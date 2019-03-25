@@ -1,0 +1,121 @@
+/*! Tabs */
+
+// default style
+.tabs {
+  margin: 0 0 14px 0;
+  padding:0px;
+  position: relative;
+}
+
+.tabs__item {
+  display:inline-block;
+}
+.tabs__link {
+  display: block;
+  text-decoration: none;
+  padding:6px 8px;
+  border-bottom: 3px solid transparent;
+  color:#555;
+}
+.tabs__link:hover, .tabs__link:focus {  
+  text-decoration: none;
+  outline: none;
+  border-bottom: 3px solid $gray;
+  color: #222;
+}
+.tabs__link.active, .tabs__link.active:hover {
+  color: #222;
+  border-bottom: 3px solid $brand-primary;
+}
+
+.tabs.underlined .tabs__item {
+  margin-bottom: -1px;
+}
+// -----------------
+// classic style
+.tabs.classic {
+  padding-left:8px;
+  border-bottom: 1px solid #ddd;
+}
+.tabs.classic .tabs__item {
+  margin-bottom: -1px;
+}
+.tabs.classic .tabs__link {
+  display: block;
+  text-decoration: none;
+  padding:4px 10px;
+  //padding-top:2px;
+  border: 1px solid #fff;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius:3px;
+  border-top-right-radius:3px;
+}
+.tabs.classic .tabs__link:hover {
+  color: $gray-dark;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  background: #F7F7F7;
+}
+.tabs.classic .tabs__link.active,
+.tabs.classic .tabs__link.active:hover {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-bottom: 1px solid transparent;
+  color: #333;
+}
+.tabs.topline .tabs__link {
+  padding:1px 8px 2px 8px;
+  border-top: 3px solid transparent;
+}
+.tabs.topline .tabs__link:hover {
+  border-top: 3px solid #ddd;
+}
+.tabs.topline .tabs__link.active:hover,
+.tabs.topline .tabs__link.active {
+  border-top: 3px solid $brand-info;
+}
+
+.tabs.rect .tabs__item {
+  margin: 0;
+}
+.tabs.rect .tabs__link {
+  padding:3px 8px;
+  border:none;
+}
+.tabs.rect .tabs__link:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+.tabs.rect .tabs__link.active,
+.tabs.rect .tabs__link.active:hover{
+  background-color: $brand-primary;
+  color: #fff;
+}
+// rounded style
+.tabs.round .tabs__link {
+  //padding: 0;
+  border-radius: 3px;
+}
+.tabs.round.bordered {
+  //padding: 0;
+  border-radius: 6px;
+}
+
+.tabs.gray .tabs__link.active,
+.tabs.gray .tabs__link.active:hover {
+  background: $gray-lightest;
+}
+.tabs.narrow .tabs__item {
+  margin-right:1rem;
+}
+.tabs.narrow .tabs__link {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.tabs.bordered {
+  padding:3px;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+.tabs.bg {
+  background:rgba(0, 0, 0, 0.05);
+}

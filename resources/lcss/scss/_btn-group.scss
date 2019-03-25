@@ -1,0 +1,45 @@
+/*! Button group */
+
+.btn-group {
+  display: inline-block;
+  font-size: 0;
+  vertical-align: middle;
+}
+/* .btn-group:after {
+  clear: both;
+  content: "";
+  display: table;
+} */
+.btn-group .btn {
+  border-radius: 0;
+  margin: 0;
+}
+.btn-group .btn:first-child {
+  border-top-left-radius: $border-radius;
+  border-bottom-left-radius: $border-radius;
+}
+.btn-group .btn:last-child {
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+}
+
+/* .btn-group + .btn-group {
+  margin-left: 10px;
+} */
+.btn-group .btn[disabled],
+.btn-group .btn[disabled]:hover,
+.btn-group .btn[disabled]:focus,
+.btn-group .btn[disabled]:active {
+  border-color: #ddd;
+}
+/* Grouped Primary Buttons */
+.btn-group .btn ~ .btn {
+  border-left-width: 0;
+}
+.btn-group .btn ~ .btn:hover,
+.btn-group .btn ~ .btn:focus,
+.btn-group .btn ~ .btn:active {
+  border-width: 1px;
+  margin-left: -1px;
+  position: relative;
+}

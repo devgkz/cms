@@ -1,0 +1,154 @@
+/*! Grid */
+
+// Breakpoints order from small to large (mobile first).
+
+.show-xs,
+.show-sm,
+.show-md,
+.show-lg,
+.show-xl {
+  display: none;
+}
+
+// Responsive grid system
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$column-gap;
+  margin-right: -$column-gap;
+  //margin-bottom: $column-gap*2;
+
+  &.-gapless {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+
+    & > .col, 
+    & > [class*="col-"] {
+      padding: 0;
+    }
+  }
+  &.-oneline {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  &.-tiled {
+    align-items: stretch;
+  }
+}
+// .row:last-child {
+  // margin-bottom: 0;
+// }
+
+[class*="col-"], .col {
+  width: 100%;
+  padding: $column-gap;
+  //padding-right: $column-gap;
+  flex: none;
+}
+
+@for $i from 12 through 1 {
+  .col-#{$i} {
+    width: percentage($i/12);
+  }
+}
+
+
+.col-auto {
+  flex: 0 0 auto;
+  max-width: none;
+  width: auto;
+}
+.col-mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.col-ml-auto {
+  margin-left: auto;
+}
+.col-mr-auto {
+  margin-right: auto;
+}
+@media (min-width: $size-xs) {
+  @for $i from 12 through 1 {
+    .col-xs-#{$i} {
+      width: percentage($i/12);
+    }
+  }
+  .hide-xs {
+    display: none;
+  }
+  .show-xs {
+    display: block;
+  }
+}
+@media (min-width: $size-sm) {
+  @for $i from 12 through 1 {
+    .col-sm-#{$i} {
+      width: percentage($i/12);
+    }
+  }
+  .hide-sm {
+    display: none;
+  }
+  .show-sm {
+    display: block;
+  }
+}
+@media (min-width: $size-md) {
+  @for $i from 12 through 1 {
+    .col-md-#{$i} {
+      width: percentage($i/12);
+    }
+  }
+  .hide-md {
+    display: none;
+  }
+  .show-md {
+    display: block;
+  }
+}
+@media (min-width: $size-lg) {
+  @for $i from 12 through 1 {
+    .col-lg-#{$i} {
+      width: percentage($i/12);
+    }
+  }
+  .hide-lg {
+    display: none;
+  }
+  .show-lg {
+    display: block;
+  }
+}
+@media (min-width: $size-xl) {
+  @for $i from 12 through 1 {
+    .col-xl-#{$i} {
+      width: percentage($i/12);
+    }
+  }  
+  .hide-xl {
+    display: none;
+  }
+  .show-xl {
+    display: block;
+  }
+}
+
+.col {
+  flex: 1;
+  max-width: 100%;
+  width:auto;
+  padding-left: $column-gap;
+  padding-right: $column-gap;
+}
+.col-narrow {
+  flex: none;
+}
+.col-tiled {
+  display: flex;
+  align-items: stretch;
+}
+
+
+

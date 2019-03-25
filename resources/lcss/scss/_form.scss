@@ -1,0 +1,115 @@
+/*! Forms */
+
+.-required:after {
+  display:inline-block;
+  color: $brand-danger;
+  content:'*';
+  //width:1em;
+  //height:1em;
+  margin-left: .25em;
+}
+
+.form {
+  margin: 1em 0 0 0;
+  position: relative;
+}
+.form label {
+  color: #555;
+  display:block; //@mod
+  padding: 5px 0; //@mod
+}
+
+.form-group {
+  margin-bottom:1em;
+}
+.form-group:last-child {
+  margin-bottom: 0;
+}
+// .form-label {
+  // margin-top:.35em;
+// }
+
+.form-text {
+  color: #707070;
+  font-size: 12px;
+  line-height: 1.66667;
+  margin: 5px 0 0 0;
+}
+.form-text:first-child {
+  margin-top: 0;
+}
+
+.form:first-child {
+  margin-top: 0;
+}
+.form .short-field {
+  max-width: 75px;
+}
+.form .medium-field {
+  max-width: 165px;
+}
+.form .medium-long-field {
+  max-width: 350px;
+}
+.form .long-field {
+  max-width: 500px;
+}
+.form .full-width-field {
+  max-width: none;
+}
+
+.top-label .form-label {
+  display: block;
+}
+
+.checkbox > label,
+.radio > label {
+  color: $gray-dark;
+}
+.checkbox > .checkbox[disabled] + label,
+.radio > .radio[disabled] + label {
+  color: #999;
+  cursor: not-allowed;
+}
+.field-group .error,
+.group .error,
+.checkbox .error,
+.radio .error {
+  clear: both;
+  color: $brand-danger;
+  display: block;
+  margin: 5px 0 0 0;
+}
+.field-group .error:first-child,
+.checkbox .error:first-child,
+.radio .error:first-child {
+  margin-top: 0;
+}
+
+
+/* Top Labels
+ * add top-label class to form eg: <form class="aui top-label">
+ * display all forms with top-labels for screen sizes < 768px
+ */
+.top-label .field-group {
+  padding-left: 0;
+}
+.top-label .field-group > label,
+.top-label .field-group > label {
+  display: block;
+  float: none;
+  margin: 0 0 5px 0;
+  padding: 0;
+  text-align: left;
+  width: auto;
+}
+
+fieldset {
+  border: 1px solid rgba(0,0,0,0.2);
+  padding:.5rem;
+}
+legend {
+  color:#777;
+  margin-left: 3px;
+  padding:0 4px;
+}

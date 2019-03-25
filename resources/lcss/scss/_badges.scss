@@ -1,0 +1,103 @@
+/*! Badges */
+
+.badge {
+  background: #ddd;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  color: $gray-dark;
+  display: inline-block;
+  font-size: 0.78571rem;
+  font-weight: bold;
+  line-height: 1;
+  margin: 0;
+  padding: 3px 5px 2px;
+  min-height: 1em;  min-width: 1em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  //vertical-align: middle;
+}
+
+//--- addit --- @ch
+.btn .badge,
+.tabs .badge {
+  //vertical-align: middle;
+  background: rgba(0, 0, 0, 0.1);
+  color: inherit;
+  position: relative;
+  top: -1px;
+  border: none;
+}
+
+.badge.subtle {
+  background-color: #fff;
+  border-color: #ccc;
+  color: $gray-dark;
+}
+.badge.pill {
+  padding: 3px 6px 2px;
+  border-radius: 2em;
+  border:none;
+}
+.badge.primary {
+  background-color: $brand-primary;
+  border-color: $brand-primary;
+  color: #fff;
+}
+.badge.primary.subtle {
+  background-color: #fff;
+  border-color: $brand-primary;
+  color: $brand-primary;
+}
+.badge.success {
+  background-color: $brand-success;
+  border-color: $brand-success;
+  color: #fff;
+}
+.badge.success.subtle {
+  background-color: #fff;
+  border-color: $brand-success;
+  color: $brand-success;
+}
+.badge.danger {
+  background-color: $brand-danger;
+  border-color: $brand-danger;
+  color: #fff;
+}
+.badge.danger.subtle {
+  background-color: #fff;
+  border-color: $brand-danger;
+  color: $brand-danger;
+}
+.badge.warning {
+  background-color: $brand-warning;
+  border-color: $brand-warning;
+  color: $gray-dark;
+}
+
+.badge.warning.subtle {
+  background-color: #fff;
+  border-color: $brand-warning;
+  color: darken($brand-warning, 20%);
+}
+.badge.info {
+  background-color: $brand-info;
+  border-color: $brand-info;
+  color: #fff;
+}
+.badge.info.subtle {
+  background-color: #fff;
+  border-color: $brand-info;
+  color: $brand-info;
+}
+.badge.moved {
+  background-color: $brand-moved;
+  border-color: $brand-moved;
+  color: #fff;
+}
+.badge.moved.subtle {
+  background-color: #fff;
+  border-color: $brand-moved;
+  color: $brand-moved;
+}
+

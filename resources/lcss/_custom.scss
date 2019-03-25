@@ -1,0 +1,218 @@
+/*! Custom */
+// Place here your custom styles
+
+html {
+    overflow-y:scroll;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    border-collapse: collapse;
+    background-color: transparent;
+}
+
+.table.bordered {
+    border: 1px solid #CFD6D6;
+}
+.table-inverse {
+    color: #fff;
+    background-color: #373a3c;
+}
+.table-striped tbody tr:nth-of-type(2n+1) {
+    background-color: #ecf0f1;
+}
+.table th, .table td {
+    padding: 0.5rem 0.75rem;
+    vertical-align: top;
+    text-align: left;
+    border-top: 1px solid #b4bcc2;
+}
+
+.grid {
+    background-color:#fcfcfc;
+    border-collapse: collapse;
+    border:1px solid #CFD6D6;
+}
+.grid th {
+    text-align:left;
+    background-color: #E1E6E6;
+    border:1px solid #CFD6D6;
+}
+
+.grid td {
+    border:1px solid #CFD6D6;
+    border-left:0;
+    border-right:0;
+    vertical-align: middle;
+}
+.grid.full td { //@todo improve naming
+    border:1px solid #CFD6D6;
+}
+.grid.striped tr:nth-child(even) td, 
+.grid.striped tr.even td  { 
+	background-color: #FAFAE7; 
+}
+
+.grid tr:hover  td,
+.grid .hovered {
+    background-color:#EEF2F2; 
+}
+tr.selected td {	
+  background-color: #cff !important;
+  color: #000 !important;  
+}
+
+.table-responsive {
+    overflow:auto;
+}
+
+.dropdown-divider {
+    border-top: 1px solid $gray-light;
+    margin: .5rem 0;
+}
+.dropdown-menu {
+    box-shadow: 0 1px 8px rgba(0,0,0,0.2);
+}
+
+
+.text-primary {
+    color: $brand-primary !important;
+}
+
+.text-success {
+    color: $brand-success !important;
+}
+
+.text-danger {
+    color: $brand-danger !important;
+}
+
+.text-warning {
+    color: $brand-warning !important;
+}
+
+.text-info {
+    color: $brand-info !important;
+}
+
+.text-gray {
+    color: $gray !important;
+}
+
+/* .page-header,  */
+.app-footer {
+    background: #FEEC6D;
+}
+
+.w-120 {
+    min-width: 120px;
+    flex: 0;
+}
+.w-150 {
+    min-width: 150px;
+    flex: 0;
+}
+
+.input.is-invalid,
+.textarea.is-invalid,
+.select.is-invalid {
+  border-color: $brand-danger;
+  background-color: lighten($brand-danger, 33%);
+}
+
+input[type="checkbox"] {
+  vertical-align: middle;
+}
+
+.tabs.classic .tabs__link {
+  display: block;
+  text-decoration: none;
+  padding:6px 14px;
+}
+.tabs.rect .tabs__link {
+    padding: 6px 8px;
+}
+
+.nav__link.active {
+  background-color: rgba(0,0,0,0.2);
+  color: #eee;
+}
+
+@media (min-width: $size-md) {
+  .right-md {
+    float: right;
+  }  
+}
+
+.pagination {
+  display: flex;
+  list-style: none;
+  border-radius: 4px;
+  padding: 0;
+}
+
+.page-link {
+  position: relative;
+  display: block;
+  padding: 6px 10px;
+  //margin-left: -1px;
+  color: #333;
+  background-color: #f1f1f1;
+  border: 1px solid #eee;
+  text-decoration:none;
+
+  &:hover {
+    z-index: 2;
+    color: #37c;
+    text-decoration: none;
+    background-color: #eee;
+    border-color: #ddd;
+  }
+
+  &:focus {
+    z-index: 2;
+    outline: none;
+    box-shadow: none;
+  }
+
+  // Opinionated: add "hand" cursor to non-disabled .page-link elements
+  &:not(:disabled):not(.disabled) {
+    cursor: pointer;
+  }
+}
+
+.page-item {
+  &:first-child {
+    .page-link {
+      margin-left: 0;
+      border-left-radius: 4px;
+    }
+  }
+  &:last-child {
+    .page-link {
+      border-right-radius: 4px;
+    }
+  }
+
+  &.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: $brand-info;
+    border-color: $brand-info;
+  }
+
+  &.disabled .page-link {
+    color: #999;
+    pointer-events: none;
+    // Opinionated: remove the "hand" cursor set previously for .page-link
+    cursor: auto;
+    background-color: #f1f1f1;
+    border-color: #f1f1f1;
+  }
+}
+
+.mw__content {
+    max-width: none;
+}

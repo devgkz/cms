@@ -1,0 +1,151 @@
+// General variables
+
+// Colors
+$white:  #fff !default;
+$black:  #000 !default;
+$red:    #d9534f !default;
+$orange: #f0ad4e !default;
+$yellow: #ffd500 !default;
+$green:  #5cb85c !default;
+$blue:   #0275d8 !default;
+$teal:   #5bc0de !default;
+$pink:   #ff5b77 !default;
+$purple: #613d7c !default;
+
+// Create grayscale
+$gray-dark:                 #222 !default;
+$gray:                      #ccc !default;
+$gray-light:                #eee !default;
+$gray-lighter:              #f1f1f1 !default;
+$gray-lightest:             #f5f5f5 !default;
+
+// Reassign color vars to semantic color scheme
+$brand-primary:             #3273DC !default;
+$brand-primary-darken:      #3273DC !default;
+
+$brand-success:             #23D160 !default;
+$brand-info:                #4A6785 !default; //
+$brand-warning:             #FFDD57 !default;
+$brand-danger:              #FF3860 !default;
+$brand-moved:               #815B3A !default;
+
+// Body
+$body-bg:       #fff !default;
+$body-color:    $gray-dark !default;
+
+// Typography
+$font-family-base:      Roboto, Arial, sans-serif !default;
+$font-size-base:        14px !default;
+$line-height-base:      1.428 !default;// 1/0.7
+
+$font-size-small:       0.85em !default;
+
+$font-family-mono:      Consolas, "Liberation Mono", monospace !default;
+$font-size-mono:        0.9em !default;
+
+// Links
+$link-color:            $brand-primary !default;
+$link-decoration:       underline !default;
+//$link-hover-color:      darken($link-color, 5%) !default;
+$link-hover-decoration: underline !default;
+
+// Buttons
+$border-radius:         3px !default;
+
+// Spacing
+$spacer:   1rem !default;
+$spacer-x: $spacer !default;
+$spacer-y: $spacer !default;
+$spacers: (
+  0: (
+    x: 0,
+    y: 0
+  ),
+  1: (
+    x: ($spacer-x * .35),
+    y: ($spacer-y * .35)
+  ),
+  2: (
+    x: ($spacer-x * .7),
+    y: ($spacer-y * .7)
+  ),
+  3: (
+    x: $spacer-x,
+    y: $spacer-y
+  ),
+  4: (
+    x: ($spacer-x * 1.428),
+    y: ($spacer-y * 1.428)
+  )
+) !default;
+
+// Responsive breakpoints
+$size-xs: 480px !default;
+$size-sm: 560px !default;
+$size-md: 768px !default;
+$size-lg: 960px !default;
+$size-xl: 1280px !default;
+$size-2x: 1440px !default;
+
+// Columns
+$column-gap: .35rem !default;
+
+$enable-caret:              true !default;
+$caret-width:                 .4em !default;
+
+$zindex-dropdown:                   1000 !default;
+$zindex-sticky:                     1020 !default;
+$zindex-fixed:                      1030 !default;
+$zindex-modal-backdrop:             1040 !default;
+$zindex-modal:                      1050 !default;
+$zindex-popover:                    1060 !default;
+$zindex-tooltip:                    1070 !default;
+
+$border-width:                1px !default;
+$component-active-color:      $white !default;
+$component-active-bg:         $brand-primary !default;
+
+// Dropdowns
+//
+// Dropdown menu container and contents.
+
+$dropdown-min-width:                10rem !default;
+$dropdown-padding-y:                .5rem !default;
+$dropdown-spacer:                   .125rem !default;
+$dropdown-bg:                       $white !default;
+$dropdown-border-color:             rgba($black, .15) !default;
+$dropdown-border-radius:            $border-radius !default;
+$dropdown-border-width:             $border-width !default;
+$dropdown-divider-bg:               $gray-light !default;
+$dropdown-box-shadow:               0 .5rem 1rem rgba($black, .175) !default;
+
+$dropdown-link-color:               $gray-dark !default;
+$dropdown-link-hover-color:         darken($gray-dark, 5%) !default;
+$dropdown-link-hover-bg:            $gray-light !default;
+
+$dropdown-link-active-color:        $component-active-color !default;
+$dropdown-link-active-bg:           $component-active-bg !default;
+
+$dropdown-link-disabled-color:      $gray !default;
+
+$dropdown-item-padding-y:           4px !default;
+$dropdown-item-padding-x:           10px !default;
+
+$dropdown-header-color:             $gray !default;
+
+// Tooltips
+
+$tooltip-font-size:                 $font-size-small !default;
+$tooltip-max-width:                 200px !default;
+$tooltip-color:                     $white !default;
+$tooltip-bg:                        $black !default;
+$tooltip-border-radius:             $border-radius !default;
+$tooltip-opacity:                   .9 !default;
+$tooltip-padding-y:                 .25rem !default;
+$tooltip-padding-x:                 .5rem !default;
+$tooltip-margin:                    0 !default;
+
+$tooltip-arrow-width:               .8rem !default;
+$tooltip-arrow-height:              .4rem !default;
+$tooltip-arrow-color:               $tooltip-bg !default;
+

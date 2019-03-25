@@ -1,0 +1,74 @@
+/*! Inputs (text, textarea, select) */
+
+.input,
+.textarea,
+.select {
+  background: $white;
+  color: $gray-dark;
+  font-family: inherit;
+  //font-size: $font-size-base;
+  border: 1px solid #ddd;
+  border-radius: $border-radius;
+  box-sizing: border-box;
+  margin: 0;
+  vertical-align: middle;
+  width: 100%;
+  //line-height: $line-height-base;
+  padding: 4px;
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  border-color: $gray;
+  background: rgba(0,0,0,0.01);
+  outline:none;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.textarea,
+.select[size] {
+  height: auto;
+  //line-height: $line-height-base;
+  margin: 0;
+  padding: 4px 5px;
+}
+.textarea {
+  overflow-y: auto;
+}
+
+/* Disabled form element styles */
+.input[disabled],
+.textarea[disabled],
+.select[disabled],
+.select[disabled] option,
+.select[disabled] optgroup {
+  background-color: $gray-lightest;
+  color: #999;
+}
+
+.input[disabled],
+.textarea[disabled],
+.select[disabled] {
+  color: #999;
+}
+
+.input::-webkit-input-placeholder,
+.textarea::-webkit-input-placeholder {
+  color: #999;
+  opacity: 1;
+}
+.input::-moz-placeholder,
+.password::-moz-placeholder,
+.textarea::-moz-placeholder {
+  color: #999;
+}
+
+.text[type=search] {
+  -webkit-appearance: textfield;
+  outline-width: 5px;
+  outline-offset: -2px;
+}
+.text[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
