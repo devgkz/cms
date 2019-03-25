@@ -7,6 +7,8 @@ cd cms
 
 php artisan make:auth
 
+php artisan migrate
+
 (npm install --global gulp-cli)
 
 npm install
