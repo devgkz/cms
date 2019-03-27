@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\User;
+use App\Models\User;
 use Hash;
 
 class SuperadminCreate extends Command
@@ -81,7 +81,7 @@ class SuperadminCreate extends Command
         $details['password'] = Hash::make($details['password']);
         
         $user = new User($details);
-        $user->is_super_admin = 1;
+        $user->role = 'admin';
         $user->save();
         return $user;
     }
@@ -94,11 +94,11 @@ class SuperadminCreate extends Command
      */
     private function display(User $admin) : void
     {
-        $headers = ['Name', 'Email', 'SuperAdmin'];
+        $headers = ['Name', 'Email', 'Role'];
         $fields = [
             'Name' => $admin->name,
-            'email' => $admin->email,
-            'admin' => $admin->isSuperAdmin()
+            'Email' => $admin->email,
+            'Role' => $admin->role
         ];
         $this->info('SuperAdmin created');
         $this->table($headers, [$fields]);

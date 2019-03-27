@@ -1,14 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Kyslik\ColumnSortable\Sortable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Sortable, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +17,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'is_super_admin',
+        'name', 
+        'email', 
+        'password', 
+        'role',
+        'phone',
+        'comment',
     ];
 
     /**
@@ -42,9 +48,15 @@ class User extends Authenticatable
      *
      * @return boolean
      */
-    public function isSuperAdmin() : bool
+    public function isAdmin() : bool
     {
-        return (bool) $this->is_super_admin;
+        return (bool) $this->hasRole('admin');
+    }
+    
+    public function hasRole(string $role)
+    {
+        $userRole = $this->getAttribute('role');
+        return $userRole == $role;
     }
   
 }

@@ -14,7 +14,9 @@ class ModifyUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedTinyInteger('is_super_admin')->default(0);
+            $table->string('role')->nullable()->after('name');
+            $table->string('phone')->nullable();
+            $table->text('comment')->nullable();
         });
     }
 
@@ -26,7 +28,9 @@ class ModifyUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('is_super_admin');
+            $table->dropColumn('role');
+            $table->dropColumn('phone');
+            $table->dropColumn('comment');
         });
     }
 }

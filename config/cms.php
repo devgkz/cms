@@ -11,6 +11,6 @@ return [
     |
     */
 
-    'default' => env('CMS_PARAM', false),
+    'admin_uri' => env('CMS_ADMIN_URI', '/dp'),
  
 ];

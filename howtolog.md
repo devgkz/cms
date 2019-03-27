@@ -23,4 +23,8 @@ php artisan migrate
 
 php artisan make:command SuperadminCreate
 
+composer require kyslik/column-sortable laravelcollective/html arrilot/laravel-widgets parsedown/laravel
+
+php artisan vendor:publish (Kyslik\ColumnSortable\ColumnSortableServiceProvider)
+
 ```

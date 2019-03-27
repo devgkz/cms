@@ -1,10 +1,10 @@
 <h1 class="mb-3">Добавить пользователя</h1>
 <hr>
-@include('partials.alerts')
+@include('admin.partials.alerts')
 
 
 <div style="max-width:400px">
-<form class="form" role="form" method="POST" action="/users/store" onsubmit="return cms.ajaxSubmitModal(this)">
+<form class="form" role="form" method="POST" action="{{ config('cms.admin_uri') }}/users/store" onsubmit="return cms.ajaxSubmitModal(this)">
     @csrf
     
     <div class="form-group row">
