@@ -1,0 +1,58 @@
+@extends('layout')
+
+@section('title', 'Пользователи')
+
+@section('header')
+<div class="page-header-main">
+    <i class="ico left fa-user text-muted"></i>Пользователи
+    <div class="page-header-right">
+        <a class="btn" href="/users/add" onclick="return cms.ajaction(this);"><i class="ico left fa-plus"></i>Добавить пользователя</a>
+    </div>
+</div>
+@endsection
+
+@section('content')
+  
+  @include('partials.alerts')
+  
+  <div class="table-responsive">
+  <table class="table bordered grid">
+      <thead class="">
+          <tr>
+              <!--th class="text-xs-center">ID</th-->
+              <th>@sortablelink('name', 'ФИО')</th>
+              <th>@sortablelink('role', 'Группа')</th>
+              <th>E-mail</th>              
+              <th>Телефон</th>              
+              <th>Комментарий</th>
+              <th>@sortablelink('created_at', 'Зарегистрирован')</th>
+              <th class="text-right">*</th>
+          </tr>
+      </thead>
+      <tbody>
+          @forelse($items as $item)
+          <tr>
+              <!--td class="text-xs-center">
+              {{ $item->id }}
+              </td-->
+              <td style="white-space:nowrap"><i class="ico left fa-user text-{{ App\Models\UserRoleList::getCss($item->role)?:'muted' }}"></i><a href="/users/view/{{ $item->id }}" onclick="return cms.ajaction(this);">{{ $item->name }}</a></td>
+              <td style="white-space:nowrap"><span class="badge {{ App\Models\UserRoleList::getCss($item->role) }}">{{ App\Models\UserRoleList::get($item->role) }}</span></td>
+              <td style="white-space:nowrap">{{ $item->email }}</td>
+              <td style="white-space:nowrap">{{ $item->phone }}</td>
+              <td style="white-space:nowrap">{{ $item->comment }}</td>
+              
+              <td style="white-space:nowrap"><small>{{ Carbon\Carbon::parse($item->created_at)->formatLocalized('%d.%m.%Y %H:%M') }}</small></td>
+              <td class="text-right" style="white-space:nowrap">
+                  <div class="btn-group2"><a class="btn compact" href="/users/edit/{{ $item->id }}" title="Редактировать" onclick="return cms.ajaction(this);"> <i class="fa fa-pencil"></i></a>
+                  <a class="btn compact text-danger" onclick="cms.modal.confirm('Удалить пользователя безвозвратно?', function(){document.getElementById('remove-form-{{ $item->id }}').submit();}); return false;" href="#" title="Удалить"><i class="fa fa-trash"></i></a></div>
+                  <form id="remove-form-{{ $item->id }}" action="/users/remove/{{ $item->id }}" method="POST" style="display: none;" onsubmit="">{{ csrf_field() }}</form>
+              </td>
+          </tr>
+          @empty
+            <tr><td colspan="5" class="text-xs-center">Нет пользователей. <a href="/users/add" onclick="return cms.ajaction(this);">Добавить</a></td></tr>
+          @endforelse
+      </tbody>
+  </table>
+  </div>
+  {{$items->links('vendor/pagination/bootstrap-4')}}
+@endsection

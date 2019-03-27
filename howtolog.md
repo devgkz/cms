@@ -15,4 +15,12 @@ npm install
 
 gulp build
 
+php artisan vendor:publish 
+    9 - laravel-errors
+    
+php artisan make:migration ModifyUsersTable (is_super_admin)
+php artisan migrate
+
+php artisan make:command SuperadminCreate
+
 ```

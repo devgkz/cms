@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'is_super_admin',
     ];
 
     /**
@@ -36,4 +36,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    /**
+     * Checks if user is a super admin
+     *
+     * @return boolean
+     */
+    public function isSuperAdmin() : bool
+    {
+        return (bool) $this->is_super_admin;
+    }
+  
 }
