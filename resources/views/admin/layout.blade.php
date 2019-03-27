@@ -24,7 +24,7 @@
 
     <div class="col-md-2">
         <div class="logo">
-          <a class="logo__link" href="{{ config('cms.admin_uri') }}">{{ config('app.name') }}</a>
+          <a class="logo__link text-danger" href="{{ config('cms.admin_uri') }}">{{ config('app.name') }}</a>
           <div class="nav-trigger">Меню<span></span></div>
         </div>
         
@@ -59,7 +59,7 @@
               </div>
         </li>
         <li class="nav__item">
-          <a class="nav__link" target="_blank" href="/">
+          <a class="nav__link text-warning" target="_blank" href="/">
             Сайт <i class="ico right fa-external-link-square-alt"></i>
           </a>
         </li>
