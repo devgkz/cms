@@ -9,7 +9,7 @@ class UserRoleList
     */
     private static $list = [
         '' => 'Не определено',
-        'admin'=>'Администратор',
+        'admin'=>'Админ',
         'user'=>'Пользователь',
     ];
     
