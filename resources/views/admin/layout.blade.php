@@ -11,6 +11,7 @@
     @endif
   </title>
   
+  <link rel="icon" type="image/png" href="/admin/images/favicon.png" sizes="16x16">
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i&amp;subset=cyrillic" rel="stylesheet">
   <link rel="stylesheet" href="/admin/css/main.css?b{{config('app.build')}}" />
@@ -33,7 +34,7 @@
         @if(Auth::user()->isAdmin())
             <?php
             $tabs = [
-                'pages' => '<i class="ico left fa-file-alt"></i>Страницы',
+                'pages' => '<i class="ico left fa-sitemap"></i>Страницы',
                 'users' => '<i class="ico left fa-user"></i>Пользователи',
                 //'log' => '<i class="ico left fa-list"></i>Журнал событий',
             ];
@@ -47,7 +48,7 @@
         
         <li class="nav__item dropdown">
               <a class="nav__link dropdown-toggle" data-toggle="dropdown" href="#" id="download" aria-expanded="false">
-                <i class="ico left fa-cog"></i>Опции <span class="caret"></span>
+                <i class="ico left fa-tools"></i>Опции <span class="caret"></span>
               </a>
               
               <div class="dropdown-menu">
@@ -56,7 +57,12 @@
                 <a class="dropdown-item" href="{{ config('cms.admin_uri') }}/about">
                   <i class="ico left fa-info-circle"></i>О программе</a>
               </div>
-        </li>          
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" target="_blank" href="/">
+            Сайт <i class="ico right fa-external-link-square-alt"></i>
+          </a>
+        </li>
         @endif
         <li class="nav__item dropdown right-md">
           <a class="nav__link dropdown-toggle" data-toggle="dropdown" href="#" id="download" aria-expanded="false">
@@ -64,7 +70,8 @@
           </a>
           
           <div class="dropdown-menu dropdown-menu-right"><!-- -->
-            
+            <a class="dropdown-item" href="{{ config('cms.admin_uri') }}/profile">
+                  <i class="ico left fa-id-card"></i>Профиль</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{ route('logout') }}"
                       onclick="event.preventDefault();

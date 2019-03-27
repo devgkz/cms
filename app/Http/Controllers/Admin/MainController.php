@@ -14,6 +14,18 @@ class MainController extends Controller
      */
     public function index()
     {
-        return view('admin/index');
+        return view('admin/main/index');
+    }
+    
+    /**
+     * Show the about page.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function about()
+    {
+        return view('admin/main/about', [
+            'text' => file_get_contents('../docs/about.md')
+        ]);
     }
 }

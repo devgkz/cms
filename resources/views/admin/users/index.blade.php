@@ -44,7 +44,7 @@
               <td style="white-space:nowrap"><small>{{ Carbon\Carbon::parse($item->created_at)->formatLocalized('%d.%m.%Y %H:%M') }}</small></td>
               <td class="text-right" style="white-space:nowrap">
                   <div class="btn-group2"><a class="btn compact" href="{{ config('cms.admin_uri') }}/users/edit/{{ $item->id }}" title="Редактировать" onclick="return cms.ajaction(this);"> <i class="fa fa-pen"></i></a>
-                  <a class="btn compact text-danger" onclick="cms.modal.confirm('Удалить пользователя безвозвратно?', function(){document.getElementById('remove-form-{{ $item->id }}').submit();}); return false;" href="#" title="Удалить"><i class="fa fa-trash"></i></a></div>
+                  <a class="btn compact" onclick="cms.modal.confirm('Удалить пользователя безвозвратно?', function(){document.getElementById('remove-form-{{ $item->id }}').submit();}); return false;" href="#" title="Удалить"><i class="fa fa-trash"></i></a></div>
                   <form id="remove-form-{{ $item->id }}" action="{{ config('cms.admin_uri') }}/users/remove/{{ $item->id }}" method="POST" style="display: none;" onsubmit="">{{ csrf_field() }}</form>
               </td>
           </tr>

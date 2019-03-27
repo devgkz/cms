@@ -25,6 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'dp', 'middleware'=> 'auth'], function () {
     
     Route::get('', 'Admin\\MainController@index')->name('admin.index');
+    Route::get('/about', 'Admin\\MainController@about')->name('admin.about');
     
     Route::group(['prefix' => 'users'], function () {
         Route::get('', 'Admin\\UsersController@index')->name('admin.users.index');
@@ -34,5 +35,10 @@ Route::group(['prefix' => 'dp', 'middleware'=> 'auth'], function () {
         Route::post('/update/{id}', 'Admin\\UsersController@update')->name('admin.users.update');
         Route::post('/remove/{id}', 'Admin\\UsersController@remove')->name('admin.users.remove');
         
+    });
+    
+    Route::group(['prefix' => 'settings'], function () {
+        Route::get('', 'Admin\\SettingsController@index')->name('admin.settings.index');
+        Route::post('', 'Admin\\settingsController@update')->name('admin.settings.update');        
     });
 });
