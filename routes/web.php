@@ -42,3 +42,8 @@ Route::group(['prefix' => 'dp', 'middleware'=> 'auth'], function () {
         Route::post('', 'Admin\\settingsController@update')->name('admin.settings.update');        
     });
 });
+
+/*
+ * CMS page routes
+ */
+Route::get('{slug}', 'PagesController@view')->where('search', '.*');
