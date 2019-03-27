@@ -50,7 +50,7 @@ gulp.task('copy:webfonts-fa5css', function() {
    .pipe(gulp.dest(paths.dist+'/css'));
 });
 
-gulp.task('copy:webfonts', gulp.parallel('copy:webfonts-fa4', 'copy:webfonts-fa4css'));
+gulp.task('copy:webfonts', gulp.parallel('copy:webfonts-fa5', 'copy:webfonts-fa5css'));
 //gulp.task('copy:webfonts', ['copy:webfonts-fa5', 'copy:webfonts-fa5css']);
 
 gulp.task('copy:css', function() {

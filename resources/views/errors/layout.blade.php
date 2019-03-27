@@ -8,14 +8,14 @@
 
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i&amp;subset=cyrillic" rel="stylesheet">
 
         <!-- Styles -->
         <style>
             html, body {
                 background-color: #fff;
                 color: #636b6f;
-                font-family: 'Nunito', sans-serif;
+                font-family: 'Montserrat', sans-serif;
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;

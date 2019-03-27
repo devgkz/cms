@@ -8,7 +8,7 @@
 
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i&amp;subset=cyrillic" rel="stylesheet">
 
         <!-- Styles -->
         <style>
@@ -294,7 +294,7 @@
         }
 
         .font-sans {
-            font-family: Nunito, sans-serif;
+            font-family: Montserrat, sans-serif;
         }
 
         .font-light {
