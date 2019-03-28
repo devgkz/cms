@@ -1,17 +1,28 @@
 @extends('admin.layout')
 
-@section('title', 'Страницы сайта'.($page ? ' - '.$page->title : ''))
+@section('title', 'Страницы'.($page ? ': '.$page->title : ''))
+
+@section('header')
+<div class="page-header-main">
+    <div class="page-header-right">
+        <a class="btn" href="{{ config('cms.admin_uri') }}/pages/add/{{ $id ?: 0 }}" onclick="return cms.ajaction(this);"><i class="ico left fa-plus"></i>Добавить</a>
+    </div>
+    
+    <a class="btn" href="{{ config('cms.admin_uri') }}/pages"><i class="ico left fa-sitemap text-info"></i>Начало</a>
+    @foreach($parents as $parent)
+        <a class="btn" href="{{ config('cms.admin_uri') }}/pages/index/{{$parent->id}}">{{ $parent->title }}</a>
+    @endforeach 
+    
+    @if($page && $page->title)
+        <span class="btn"><b>{{ $page->title }}</b></span>
+    @endif
+</div>
+@endsection
 
 @section('content')
 
-
 <ul class="tabs classic topline">
-    @if($id)
-        @forelse($parents as $parent)
-            <li class="tabs__item"><a class="tabs__link" href="{{ config('cms.admin_uri') }}/pages/index/{{$id}}">{{ $parent->title }} &rarr;</a></li>
-        @empty
-            <li class="tabs__item"><a class="tabs__link" href="{{ config('cms.admin_uri') }}/pages">Начало</a> &rarr;</li>
-        @endforelse
+    @if($id)        
         <li class="tabs__item"><a class="tabs__link active" href="{{ config('cms.admin_uri') }}/pages/index/{{$id}}">Список страниц</a></li>
         <li class="tabs__item"><a class="tabs__link" href="{{ config('cms.admin_uri') }}/pages/edit/{{$id}}">Содержимое</a></li>
     @else 
@@ -19,47 +30,32 @@
     @endif
 </ul>
 
-<div class="alert mb-3">
-<?php
-/* 
-Список страниц</h1>
-&nbsp;&nbsp;<a href="/admin/pages/add/<?=$id?>" class="do" title="Добавить новую страницу">добавить страницу</a>
- */
-if (count($parents)) {
-  echo '<p><a href="'.config('cms.admin_uri').'/pages">Начало</a> &rarr; ';
-  foreach($parents as $parent) {
-    if($parent['id']==$id) echo '<b>'.$parent['title'].'</b>  <span class="inline-btns"><a class="do" href="'.config('cms.admin_uri').'/pages/add/'.$id.'">добавить сюда</a> | <a class="do" href="'.$parent['slug'].'" target="_blank">просмотр</a>&nbsp;<img src="'.config('cms.admin_uri').'/images/new-window.png"></span>';
-    else echo '<a href="'.config('cms.admin_uri').'/pages/index/'.$parent['id'].'">'.$parent['title'].'</a> &rarr; ';
-    if($parent['id']==$id) $so = $parent['sort_childs'];
-  }
-  echo '</p>';
-} else {
-  echo '<p><b>Начало</b> &rarr; <span class="inline-btns"> <a class="do" href="'.config('cms.admin_uri').'/pages/add/'.$id.'">добавить сюда</a> </span></p>';
-}
-?>
-</div>
 <div class="table-responsive">
 <table class="table bordered grid full" style="width:auto">
   <thead>
       <tr>
           <th>ID</th>
-          <th>Title</th>          
+          <th style="min-width:270px">Title</th>          
           <th>Template</th>          
           <th>Created</th>          
-          <th>**</th>
+          <th class="text-muted">**</th>
       </tr>
   </thead>
   <tbody>
       @forelse($items as $item)
       <tr>
-          <td>{{ $item->id }}</td>
-          <td><a href="{{ config('cms.admin_uri') }}/pages/index/{{$item->id}}">{{ $item->title }}</a></td>
+          <td><small>{{ $item->id }}</small></td>
+          <td>
+              <a href="{{ config('cms.admin_uri') }}/pages/index/{{$item->id}}">{{ $item->title }}</a>
+          </td>
           <td>{{ $item->template }}</td>
-          <td class="hovered" style="white-space:nowrap">
-            {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $item->created_at)->format('d.m.Y H:i') }}
+          <td style="white-space:nowrap">
+            <small>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $item->created_at)->format('d.m.Y H:i') }}</small>
           </td>          
           <td class="text-right" style="white-space:nowrap">
-            
+              <a class="text-info p-1" href="{{ config('cms.admin_uri') }}/pages/edit/{{ $item->id }}" title="Редактировать"><i class="fa fa-pen"></i></a>
+              <a class="text-danger p-1" onclick="cms.modal.confirm('Удалить страницу?', function(){document.getElementById('remove-form-{{ $item->id }}').submit();}); return false;" href="#" title="Удалить"><i class="fa fa-trash"></i></a>
+              <form id="remove-form-{{ $item->id }}" action="{{ config('cms.admin_uri') }}/pages/remove/{{ $item->id }}" method="POST" style="display: none;" onsubmit="">{{ csrf_field() }}</form>
           </td>
       </tr>
       @empty

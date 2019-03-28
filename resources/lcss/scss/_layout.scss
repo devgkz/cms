@@ -16,8 +16,8 @@
 /* Content container wrapper */
 .container {
   width:100%;
-  padding-right: 20px;
-  padding-left: 20px;
+  padding-right: 1rem;
+  padding-left: 1rem;
 }
 
 /* Sticky footer */
@@ -27,12 +27,12 @@
   flex-direction: column;
 }
 .app-content {
-  padding-top:20px;
-  padding-bottom:20px;
+  padding-top:1rem;
+  padding-bottom:1rem;
   flex: 1;
 }
 .app-footer {
-  padding: 0.5rem 20px;
+  padding: 0.5rem 1rem;
   background:rgba(0,0,0,0.05);
   border-top: 1px solid rgba(0,0,0,0.1);
 }
@@ -99,8 +99,8 @@
 .logo {
   // height:40px;
   // float: left;
-  padding-left: 20px;
-  padding-right: 9px;
+  padding-left: 1rem;
+  padding-right: .5rem;
   position: relative;
 }
 .logo__link {
@@ -264,11 +264,11 @@
   clear: both;
 }
 .page-header-inner {
-    padding: 20px;
+    padding: 1rem;
 }
 .page-header-main {
     display: block;
-    font-size: 24px;
+    font-size: 20px;
 }
 .page-header-right {
     float: right;

@@ -123,8 +123,8 @@
   &:hover,
   &:focus {
     text-decoration: none;
-    //color: #fff;
-    background: $gray-light;
+    color: #fff;
+    background: $brand-info;
 }
 
   &.active,

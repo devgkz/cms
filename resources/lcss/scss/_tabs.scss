@@ -13,7 +13,8 @@
 .tabs__link {
   display: block;
   text-decoration: none;
-  padding:6px 8px;
+  line-height: $line-height-base;
+  padding:4px 10px;
   border-bottom: 3px solid transparent;
   color:#555;
 }
@@ -34,7 +35,7 @@
 // -----------------
 // classic style
 .tabs.classic {
-  padding-left:8px;
+  padding-left:4px;
   border-bottom: 1px solid #ddd;
 }
 .tabs.classic .tabs__item {
@@ -64,7 +65,7 @@
   color: #333;
 }
 .tabs.topline .tabs__link {
-  padding:1px 8px 2px 8px;
+  //padding:1px 8px 2px 8px;
   border-top: 3px solid transparent;
 }
 .tabs.topline .tabs__link:hover {

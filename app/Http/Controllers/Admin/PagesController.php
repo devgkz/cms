@@ -25,19 +25,16 @@ class PagesController extends Controller
         $cond = Page::where('parent_id', $id);
         
         if ($id != 0) {
-            $parents[] = $parent = $page = Page::findOrFail($id);
+            $parent = $page = Page::findOrFail($id);
             while ($parent->parent_id != 0) {
                 $parent = $parent->parent;
                 $parents[] = $parent;
-            }
-            
+            }            
         }
         
         $cond->orderBy($page && $page->order_childs_by ?: 'sort_order');
         
         $items = $cond->get();
-        
-        //dd($items);
 
         return view('admin/pages/index', [
             'items'=>$items,
@@ -115,13 +112,22 @@ class PagesController extends Controller
      */
     public function edit($id)
     {
-        $item = Page::findOrFail($id);
+        $parents = [];
+        $page = null;
         
-        $skeds = Sked::all();
+        $cond = Page::where('parent_id', $id);
+
+        $parent = $page = Page::findOrFail($id);
         
+        while ($parent->parent_id != 0) {
+            $parent = $parent->parent;
+            $parents[] = $parent;
+        }            
+
         return view('admin/pages/edit', [
-            'item' => $item,
-            'skeds' => $skeds,
+            'parents'=>array_reverse($parents),
+            'page'=>$page,
+            'id'=>$id
         ]);
     }
 
