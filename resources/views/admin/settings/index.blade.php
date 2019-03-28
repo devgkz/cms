@@ -4,7 +4,7 @@
 
 @section('header')
 <div class="page-header-main">
-    <i class="ico left fa-cog"></i>Настройки
+    <i class="ico left fa-cog text-info"></i>Настройки
 </div>
 @endsection
 

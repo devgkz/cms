@@ -18,19 +18,19 @@ class CreatePagesTable extends Migration
             $table->unsignedInteger('parent_id')->default(0);
             $table->string('slug');
             $table->string('title');
-            $table->text('introtext');
+            $table->text('introtext')->nullable();
             $table->mediumText('content');
-            $table->string('tag', 255);
+            $table->string('tag', 255)->nullable();
             
             $table->string('template');
-            $table->string('layout');
+            $table->string('layout')->nullable();
             
-            $table->boolean('in_menu');
-            $table->boolean('is_pin');
-            $table->unsignedTinyInteger('section_menu');
+            $table->boolean('in_menu')->default(0);
+            $table->boolean('is_pin')->default(0);
+            $table->unsignedTinyInteger('section_menu')->default(0);
             $table->string('order_childs_by');
-            $table->unsignedInteger('sort_order');
-            $table->unsignedInteger('status');
+            $table->unsignedInteger('sort_order')->nullable();
+            $table->unsignedInteger('status')->default(0);
             
             $table->timestamps();
             $table->softDeletes();

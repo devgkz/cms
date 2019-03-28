@@ -4,7 +4,7 @@
 
 @section('header')
 <div class="page-header-main">
-    <i class="ico left fa-user text-muted"></i>Пользователи
+    <i class="ico left fa-user text-info"></i>Пользователи
     <div class="page-header-right">
         <a class="btn" href="{{ config('cms.admin_uri') }}/users/add" onclick="return cms.ajaction(this);"><i class="ico left fa-plus"></i>Добавить пользователя</a>
     </div>
