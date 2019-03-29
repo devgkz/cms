@@ -32,18 +32,19 @@
 
 <div class="row">
 <div class="col-md-8">
+    <div class="mb-2">
     <form class="form" role="form" method="POST" action="{{ config('cms.admin_uri') }}/pages/update/{{ $page->id }}" onsubmit="return cms.ajaxSubmitModal(this)">
         @csrf
         
         <div class="form-group row">
-          <div class="col w-150"><label class="form-label -required">Заголовок</label></div>
+          <div class="col-md-4"><label class="form-label -required">Заголовок</label></div>
           <div class="col">
             <input class="input{{ $errors->has('title')?' is-invalid':'' }}" name="title" type="text" value="{{ old('title')?:$page->title }}" autofocus>
           </div>
         </div>
         
         <div class="form-group row">
-          <div class="col w-150"><label class="form-label -required">URI</label></div>
+          <div class="col-md-4"><label class="form-label -required">URI</label></div>
           <div class="col">
             <input class="input{{ $errors->has('slug')?' is-invalid':'' }}" name="slug" type="text" value="{{ old('slug')?:$page->slug }}">
           </div>
@@ -60,12 +61,46 @@
         </div>
         
         <div class="form-group row">
+          <div class="col-md-4"><label class="form-label">Шаблон (поведение)</label></div>
           <div class="col">
-            <div class="form-text">{{ Form::checkbox('in_menu', 1, (bool) $page->in_menu)}} Включать в меню</div>
+            {{ Form::select('template', App\Models\Page::getTemplates(), old('template')?:$page->template, ['class'=>'select']) }}
           </div>
         </div>
         
+        <div class="form-group row">
+          <div class="col-md-4"><label class="form-label">Макет страницы</label></div>
+          <div class="col">
+            {{ Form::select('layout', App\Models\Page::getLayouts(), old('layout')?:$page->layout, ['class'=>'select']) }}
+          </div>
+        </div>
         
+        <div class="form-panel mb-2">
+          <div class="checkbox">
+          {{ Form::hidden('in_menu', '') }}
+            <label>{{ Form::checkbox('in_menu', 1, (bool) $page->in_menu, ['class'=>''])}} Включать в меню</label>
+          </div>
+        
+          <div class="checkbox">
+          {{ Form::hidden('is_pin', '') }}
+            <label class="checkbox">{{ Form::checkbox('is_pin', 1, (bool) $page->is_pin, ['class'=>''])}} Закрепить вверху</label>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <div class="col-md-4"><label class="form-label">Меню раздела</label></div>
+          <div class="col">
+            {{ Form::select('section_menu', App\Models\Page::getSectionMenuTypes(), old('section_menu')?:$page->section_menu, ['class'=>'select']) }}
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <div class="col-md-4"><label class="form-label">Сортировка вложенных страниц</label></div>
+          <div class="col">
+            <input class="input{{ $errors->has('order_childs_by')?' is-invalid':'' }}" name="order_childs_by" type="text" value="{{ old('order_childs_by')?:$page->order_childs_by }}">
+          </div>
+        </div>
+        
+     
         <hr>
         <div class="">
             <button type="submit" class="btn primary">
@@ -77,13 +112,12 @@
             </button>
         </div>
     </form>
+    </div>
 </div>
 <div class="col-md-4">
-    <div class="card">
-        <div class="card-block">
-            Media placeholder
-        </div>
-    </div>    
+    <div style="padding-left:.7rem; border-left:1px solid #eee">
+    <h4>Media placeholder</h4> 
+    </div>
 </div>  
 </div>
 
@@ -103,17 +137,8 @@ tinymce.init({
    // formatselect
   toolbar: "styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist blockquote | outdent indent | link image | forecolor backcolor",
   //menubar : false,
-  menu: {
-        //file: {title: 'File', items: 'newdocument'},
-        edit: {title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall'},
-        insert: {title: 'Insert', items: 'link image media anchor | charmap | pagebreak hr nonbreaking'}, 
-        format: {title: 'Format', items: 'bold italic underline strikethrough superscript subscript | removeformat'}, // | formats
-        table: {title: 'Table', items: 'inserttable tableprops deletetable | cell row column'},
-        view: {title: 'View', items: 'code fullscreen | visualaid visualblocks'},
-        //tools: {title: 'Tools', items: 'spellchecker code'}
-    },
-
-  content_css : '/css/design.css',
+  
+  //content_css : '/css/design.css',
   image_advtab: true,
   relative_urls : false,
   file_browser_callback : elFinderBrowser,

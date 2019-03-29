@@ -27,4 +27,6 @@ composer require kyslik/column-sortable laravelcollective/html arrilot/laravel-w
 
 php artisan vendor:publish (Kyslik\ColumnSortable\ColumnSortableServiceProvider)
 
+@todo custom radio and checkbox css
+
 ```

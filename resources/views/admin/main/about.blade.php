@@ -8,6 +8,6 @@
 
 @section('content')
 
-@parsedown($text)
+    @parsedown($text)
 
 @endsection

@@ -19,7 +19,7 @@ class CreatePagesTable extends Migration
             $table->string('slug');
             $table->string('title');
             $table->text('introtext')->nullable();
-            $table->mediumText('content');
+            $table->mediumText('content')->nullable();
             $table->string('tag', 255)->nullable();
             
             $table->string('template');
@@ -28,7 +28,7 @@ class CreatePagesTable extends Migration
             $table->boolean('in_menu')->default(0);
             $table->boolean('is_pin')->default(0);
             $table->unsignedTinyInteger('section_menu')->default(0);
-            $table->string('order_childs_by');
+            $table->string('order_childs_by')->nullable();
             $table->unsignedInteger('sort_order')->nullable();
             $table->unsignedInteger('status')->default(0);
             

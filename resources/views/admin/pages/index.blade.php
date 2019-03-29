@@ -36,8 +36,9 @@
       <tr>
           <th>ID</th>
           <th style="min-width:270px">Title</th>          
-          <th>Template</th>          
-          <th>Created</th>          
+          <th>URI</th>          
+          <th>Шаблон</th>          
+          <th>Created</th>
           <th class="text-muted">**</th>
       </tr>
   </thead>
@@ -48,7 +49,8 @@
           <td>
               <a href="{{ config('cms.admin_uri') }}/pages/index/{{$item->id}}">{{ $item->title }}</a>
           </td>
-          <td>{{ $item->template }}</td>
+          <td><small>{{ $item->slug }}</small></td>
+          <td>{{ App\Models\Page::getTemplates()[$item->template] }}</td>
           <td style="white-space:nowrap">
             <small>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $item->created_at)->format('d.m.Y H:i') }}</small>
           </td>          

@@ -42,7 +42,7 @@
 
 [class*="col-"], .col {
   width: 100%;
-  padding: $column-gap;
+  padding: 0 $column-gap;
   //padding-right: $column-gap;
   flex: none;
 }

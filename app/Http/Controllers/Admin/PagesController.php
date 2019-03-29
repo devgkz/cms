@@ -141,21 +141,17 @@ class PagesController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'mark' => 'required',
-            'model' => 'required',
-            'status' => 'required',
-            'color' => 'required',
-            'year' => 'required|integer',
-            'gibdd_number' => 'required',
+            'slug' => 'required',
+            'title' => 'required',            
         ]);
         
         if ($validator->fails()) {
-            return redirect()->to('admin/pages/edit/'.$id)->withInput()->withErrors($validator->errors());
+            return redirect()->to(config('cms.admin_uri').'/pages/edit/'.$id)->withInput()->withErrors($validator->errors());
         } 
         
         $item = Page::find($id)->update($request->all());
         
-        return response('<div class="alert success">Автомобиль изменен</div><script>window.location.reload()</script>');
+        return response('<div class="alert success">Изменения сохранены</div><script>window.location.reload()</script>');
     }
 
     /**
@@ -169,6 +165,6 @@ class PagesController extends Controller
         $item = Page::findOrFail($id);
         $item->delete();
 
-        return redirect()->to('/cars');
+        return redirect()->to(config('cms.admin_uri').'/pages/index/'.$item->parent_id);
     }
 }
