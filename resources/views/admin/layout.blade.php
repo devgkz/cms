@@ -35,7 +35,7 @@
             <?php
             $tabs = [
                 'pages' => '<i class="ico left fa-sitemap"></i>Страницы',
-                'users' => '<i class="ico left fa-user"></i>Пользователи',
+                'users' => '<i class="ico left fa-user-friends"></i>Пользователи',
                 //'log' => '<i class="ico left fa-list"></i>Журнал событий',
             ];
             ?>

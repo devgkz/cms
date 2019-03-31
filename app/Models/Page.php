@@ -69,4 +69,12 @@ class Page extends Model
     {
         return $this->hasMany('App\Models\Page', 'parent_id');
     }
+    
+    /**
+     * Get the media for the page.
+     */
+    public function media()
+    {
+        return $this->hasMany('App\Models\Media', 'page_id');
+    }
 }

@@ -101,6 +101,10 @@ tr.selected td {
     color: $gray !important;
 }
 
+.nowrap {
+    white-space: nowrap;
+}
+
 /* .page-header,  */
 /*.app-footer {
     background: #FEEC6D;
@@ -141,6 +145,12 @@ input[type="checkbox"] {
 .tabs.rect .tabs__link {
     padding: 6px 8px;
 }*/
+
+
+.tabs.topline .tabs__link.active:hover,
+.tabs.topline .tabs__link.active {
+  border-top: 3px solid #E36209;
+}
 
 .nav__link.active {
   background-color: rgba(0,0,0,0.2);

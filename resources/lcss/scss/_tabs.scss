@@ -51,12 +51,12 @@
   border-top-left-radius:3px;
   border-top-right-radius:3px;
 }
-.tabs.classic .tabs__link:hover {
-  color: $gray-dark;
-  text-decoration: none;
-  border: 1px solid #ddd;
-  background: #F7F7F7;
-}
+// .tabs.classic .tabs__link:hover {
+  // color: $gray-dark;
+  // text-decoration: none;
+  // border: 1px solid #ddd;
+  // background: #F7F7F7;
+// }
 .tabs.classic .tabs__link.active,
 .tabs.classic .tabs__link.active:hover {
   background: #fff;
@@ -68,9 +68,9 @@
   //padding:1px 8px 2px 8px;
   border-top: 3px solid transparent;
 }
-.tabs.topline .tabs__link:hover {
-  border-top: 3px solid #ddd;
-}
+// .tabs.topline .tabs__link:hover {
+  // border-top: 3px solid #ddd;
+// }
 .tabs.topline .tabs__link.active:hover,
 .tabs.topline .tabs__link.active {
   border-top: 3px solid $brand-info;

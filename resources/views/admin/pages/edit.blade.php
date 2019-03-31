@@ -5,7 +5,7 @@
 @section('header')
 <div class="page-header-main">
     <div class="page-header-right">
-        <a class="btn" href="{{ config('cms.admin_uri') }}/pages/add/{{ $id ?: 0 }}" onclick="return cms.ajaction(this);"><i class="ico left fa-plus"></i>Добавить</a>
+        <a class="btn" href="{{ config('cms.admin_uri') }}/pages/add/{{ $page->parent_id ?: 0 }}" onclick="return cms.ajaction(this);"><i class="ico left fa-plus"></i>Добавить в раздел</a>
     </div>
     
     <a class="btn" href="{{ config('cms.admin_uri') }}/pages"><i class="ico left fa-sitemap text-info"></i>Начало</a>
@@ -16,14 +16,16 @@
     @if($page && $page->title)
         <span class="btn"><b>{{ $page->title }}</b></span>
     @endif
+    
 </div>
+
 @endsection
 
 @section('content')
 
 <ul class="tabs classic topline">
     <li class="tabs__item">
-        <a class="tabs__link" href="{{ config('cms.admin_uri') }}/pages/index/{{$id}}">Список страниц</a></li>
+        <a class="tabs__link" href="{{ config('cms.admin_uri') }}/pages/index/{{$id}}">Страницы</a></li>
     <li class="tabs__item">
         <a class="tabs__link active" href="{{ config('cms.admin_uri') }}/pages/edit/{{$id}}">Содержимое</a></li>    
 </ul>
@@ -74,15 +76,19 @@
           </div>
         </div>
         
-        <div class="form-panel mb-2">
-          <div class="checkbox">
-          {{ Form::hidden('in_menu', '') }}
-            <label>{{ Form::checkbox('in_menu', 1, (bool) $page->in_menu, ['class'=>''])}} Включать в меню</label>
+        <div class="form-group row">
+          <div class="col-md-4"><label class="form-label">Включать в меню</label></div>
+          <div class="col">
+            {{ Form::hidden('in_menu', '0') }}
+            {{ Form::checkbox('in_menu', 1, (bool) $page->in_menu, ['class'=>'switchbox'])}}
           </div>
+        </div>
         
-          <div class="checkbox">
-          {{ Form::hidden('is_pin', '') }}
-            <label class="checkbox">{{ Form::checkbox('is_pin', 1, (bool) $page->is_pin, ['class'=>''])}} Закрепить вверху</label>
+        <div class="form-group row">
+          <div class="col-md-4"><label class="form-label">Закрепить вверху</label></div>
+          <div class="col">
+            {{ Form::hidden('is_pin', '0') }}
+            {{ Form::checkbox('is_pin', 1, (bool) $page->is_pin, ['class'=>'switchbox'])}}
           </div>
         </div>
         
@@ -102,6 +108,14 @@
         
      
         <hr>
+        <div class="form-group row">
+          <div class="col-md-4"><label class="form-label">Статус публикации</label></div>
+          <div class="col">
+            {{ Form::select('status', App\Models\PageStatusList::all(), old('status')?:$page->status, ['class'=>'select']) }}
+          </div>
+        </div>
+        
+        <hr>
         <div class="">
             <button type="submit" class="btn primary">
                 <i class="ico left fa fa-check"></i> Сохранить
@@ -116,7 +130,8 @@
 </div>
 <div class="col-md-4">
     <div style="padding-left:.7rem; border-left:1px solid #eee">
-    <h4>Media placeholder</h4> 
+        <h4><i class="ico left fa fa-paperclip text-muted"></i>Прикрепленное медиа</h4>
+        
     </div>
 </div>  
 </div>

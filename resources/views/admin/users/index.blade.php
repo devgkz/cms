@@ -4,7 +4,7 @@
 
 @section('header')
 <div class="page-header-main">
-    <i class="ico left fa-user text-info"></i>Пользователи
+    <i class="ico left fa-user-friends text-info"></i>Пользователи
     <div class="page-header-right">
         <a class="btn" href="{{ config('cms.admin_uri') }}/users/add" onclick="return cms.ajaction(this);"><i class="ico left fa-plus"></i>Добавить пользователя</a>
     </div>
@@ -26,7 +26,7 @@
               <th>Телефон</th>              
               <th>Комментарий</th>
               <th>@sortablelink('created_at', 'Зарегистрирован')</th>
-              <th class="text-right">*</th>
+              <th class="text-right text-muted">*</th>
           </tr>
       </thead>
       <tbody>
@@ -41,10 +41,11 @@
               <td style="white-space:nowrap">{{ $item->phone }}</td>
               <td style="white-space:nowrap">{{ $item->comment }}</td>
               
-              <td style="white-space:nowrap"><small>{{ Carbon\Carbon::parse($item->created_at)->formatLocalized('%d.%m.%Y %H:%M') }}</small></td>
+              <td style="white-space:nowrap"><small>{{ $item->created_at->format('d.m.Y H:i') }}</small></td>
               <td class="text-right" style="white-space:nowrap">
-                  <div class="btn-group2"><a class="btn compact" href="{{ config('cms.admin_uri') }}/users/edit/{{ $item->id }}" title="Редактировать" onclick="return cms.ajaction(this);"> <i class="fa fa-pen"></i></a>
-                  <a class="btn compact" onclick="cms.modal.confirm('Удалить пользователя безвозвратно?', function(){document.getElementById('remove-form-{{ $item->id }}').submit();}); return false;" href="#" title="Удалить"><i class="fa fa-trash"></i></a></div>
+                  <a class="text-info" href="{{ config('cms.admin_uri') }}/users/edit/{{ $item->id }}" title="Редактировать" onclick="return cms.ajaction(this);"> <i class="fa fa-pen"></i></a>
+                  <span class="p-1"></span>
+                  <a class="text-danger" onclick="cms.modal.confirm('Удалить пользователя?', function(){document.getElementById('remove-form-{{ $item->id }}').submit();}); return false;" href="#" title="Удалить"><i class="fa fa-trash"></i></a></div>
                   <form id="remove-form-{{ $item->id }}" action="{{ config('cms.admin_uri') }}/users/remove/{{ $item->id }}" method="POST" style="display: none;" onsubmit="">{{ csrf_field() }}</form>
               </td>
           </tr>

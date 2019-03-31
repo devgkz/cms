@@ -10,22 +10,36 @@
 
 @section('content')
 
-<form method="post" id="edit-form" onsubmit="cms.ajaxSubmitModal(this);return false">
-{{ csrf_field() }}
-<table class="table grid" style="width:auto">
-<tbody>
-@foreach($settings as $item)
-    <tr>
-        <td><strong>{{ $item->title }}</strong><br>
-            <small>{{ $item->comment }}</small>
-        </td>
-        <td style="text-align:left">
-            <input class="input" name="data[{{ $item->name }}]" type="text" value="{{ $item->value }}" style="min-width: 400px;width:100%">
-        </td>
-    </tr>
-@endforeach
-</tbody>
-</table>
-<button class="btn primary" type="submit"><i class="ico left fa-save"></i>Сохранить</button>
+<form method="post" id="edit-form" onsubmit="cms.ajaxSubmit(this, formOptions);return false">
+    @csrf
+
+    @foreach($settings as $item)
+    <div class="form-group row">
+        <div class="col-md-4"><label class="form-label"><strong>{{ $item->title }}</strong><br>
+            <small>{{ $item->comment }}</small></label></div>
+        <div class="col">
+            <input class="input" name="data[{{ $item->name }}]" type="text" value="{{ $item->value }}">
+        </div>
+    </div>
+    <hr class="show-md">
+    @endforeach
+    
+    <button class="btn primary" type="submit">Сохранить</button>
 </form>
+
+<script type="text/javascript">
+formOptions = {
+    before:  function () {
+        cms.modal.wait(0);
+    },
+    success: function (data) {
+        cms.modal.waitClose();
+        cms.notice.show("Настройки сохранены", "success", 1000);
+    },
+    error: function (data) {
+        cms.modal.waitClose();
+        cms.modal.alert('Ошибка связи. Проверьте интернет<br> и попробуйте еще раз', cms.modal.closeAll);
+    },
+}
+</script>
 @endsection

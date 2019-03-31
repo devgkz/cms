@@ -48,7 +48,6 @@ class SettingsController extends Controller
             }
         }
         
-        return response('<div class="alert success">Настройки сохранены</div>
-                <script>window.location.reload()</script>');
+        return response(['status' => 'ok']);
     }
 }

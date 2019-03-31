@@ -49,12 +49,11 @@ class PagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function add()
+    public function add($parentId = 0)
     {
-        $skeds = Sked::all();
-        
+   
         return view('admin/pages/add', [
-            'skeds' => $skeds,
+            'parentId' => $parentId,
         ]);
     }
 
@@ -64,15 +63,11 @@ class PagesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($parentId, Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'mark' => 'required',
-            'model' => 'required',
-            'status' => 'required',
-            'color' => 'required',
-            'year' => 'required|integer',
-            'gibdd_number' => 'required',
+            'slug' => 'required',
+            'title' => 'required',            
         ]);
         
         if ($validator->fails()) {
@@ -80,13 +75,14 @@ class PagesController extends Controller
             return view('admin/pages/add', [
                 'errors' => $validator->errors()
             ]) ;*/
-            return redirect()->to('admin/pages/add')->withInput()->withErrors($validator->errors());
+            return redirect()->to(config('cms.admin_uri').'/pages/add'.$parentId)->withInput()->withErrors($validator->errors());
         }
         
         $item = Page::create($request->all());
+        $item->parent_id = $parentId;
         $item->save();
         
-        return response('<div class="alert success">Автомобиль добавлен</div><script>window.location.reload()</script>');
+        return response('<div class="alert success">Страница добавлена</div><script>window.location.reload()</script>');
     }
 
     /**
@@ -151,7 +147,7 @@ class PagesController extends Controller
         
         $item = Page::find($id)->update($request->all());
         
-        return response('<div class="alert success">Изменения сохранены</div><script>window.location.reload()</script>');
+        return response('<div class="alert success">Изменения сохранены</div><script>setTimeout(function() {cms.modal.closeAll();}, 500);</script>');
     }
 
     /**

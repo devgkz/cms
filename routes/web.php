@@ -35,14 +35,15 @@ Route::group(['prefix' => 'dp', 'middleware'=> 'auth'], function () {
         Route::get('/edit/{id}', 'Admin\\UsersController@edit')->name('admin.users.edit');
         Route::post('/update/{id}', 'Admin\\UsersController@update')->name('admin.users.update');
         Route::post('/remove/{id}', 'Admin\\UsersController@remove')->name('admin.users.remove');        
+        Route::get('/view/{id}', 'Admin\\UsersController@view')->name('admin.users.view');        
     });
     
     // Pages
     Route::group(['prefix' => 'pages'], function () {
         Route::get('', 'Admin\\PagesController@index')->name('admin.pages');
         Route::get('index/{id}', 'Admin\\PagesController@index')->name('admin.pages.index');
-        Route::get('/add', 'Admin\\PagesController@add')->name('admin.pages.add');
-        Route::post('/store', 'Admin\\PagesController@store')->name('admin.pages.store');
+        Route::get('/add/{parentId}', 'Admin\\PagesController@add')->name('admin.pages.add');
+        Route::post('/store/{parentId}', 'Admin\\PagesController@store')->name('admin.pages.store');
         Route::get('/edit/{id}', 'Admin\\PagesController@edit')->name('admin.pages.edit');
         Route::post('/update/{id}', 'Admin\\PagesController@update')->name('admin.pages.update');
         Route::post('/remove/{id}', 'Admin\\PagesController@remove')->name('admin.pages.remove');        

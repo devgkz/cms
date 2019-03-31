@@ -14,7 +14,7 @@
     z-index: 9010;
     display:none;
     opacity: 0;
-    transition: opacity 0.1s linear;
+    transition: opacity 0.05s linear;
     
     &.-transparent {
       background: transparent;
@@ -46,8 +46,8 @@ html.mw-locked .mw__overlay {
   width: 100%;
   //min-height: 100%;
   max-width: 480px;
-  transform: scale(.5);
-  transition: all 0.1s;
+  transform: scale(.8);
+  transition: all 0.05s;
 }
 .mw__content, .mw__overlay:after {
   vertical-align: middle;
@@ -129,7 +129,7 @@ html.mw-locked {
   position:relative;
   top:-50px;
   opacity:0;
-  transition: all 0.15s ease;
+  transition: all 0.1s ease;
   box-shadow:0 0 3px rgba(0,0,0,0.3);
 
   &.primary {
@@ -164,5 +164,5 @@ html.mw-locked {
 }
 .nw__message.nw-hidden {
   opacity:0;
-  top:50px;
+  top:14px;
 }

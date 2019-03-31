@@ -1,17 +1,17 @@
 <h1 class="mb-3"><i class="ico left fa-user text-muted"></i>{{ App\Models\UserRoleList::get($item->role) }} {{-- request()->ajax() --}}</h1>
 <hr>
 
-<div style="max-width:400px">
+<div style="min-width:300px">
     <div class="row">
-      <div class="col"><strong>ФИО</strong></div>
+      <div class="col-md-6"><strong>ФИО</strong></div>
       <div class="col"><strong>{{ $item->name }}</strong></div>
     </div>
     <div class="row">
-      <div class="col">E-mail</div>
+      <div class="col-md-6">E-mail</div>
       <div class="col"><a href="mailto:{{ $item->email }}">{{ $item->email }}</a></div>
     </div>
     <div class="row">
-      <div class="col">Телефон</div>
+      <div class="col-md-6">Телефон</div>
       <div class="col"><a href="tel:{{ str_replace([' ', '-', '(', ')'], '', $item->phone) }}">{{ $item->phone }}</a></div>
     </div>
     <hr>
@@ -28,7 +28,7 @@
     
     <hr>
     <div class="row">
-     <div class="col"> <small>Добавлен {{ Carbon\Carbon::parse($item->created_at)->formatLocalized('%d.%m.%Y %H:%M') }}<br>Изменен {{ Carbon\Carbon::parse($item->updated_at)->formatLocalized('%d.%m.%Y %H:%M') }}</small></div>
+     <div class="col"> <small>Добавлен {{ $item->created_at->format('d.m.Y H:i') }}<br>Изменен {{ $item->updated_at->format('d.m.Y H:i') }}</small></div>
     </div>    
     <hr>
  

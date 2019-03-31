@@ -453,7 +453,7 @@ cms.notice.hideAll = function () {
             right: '0',
             zIndex: 10000,
             background: '#FFDD57',
-            transition: 'width 0.3s linear'
+            transition: 'width 0.05s ease'
         }, styles);
     }
     function extend(destination) {
@@ -478,7 +478,7 @@ cms.notice.hideAll = function () {
     };
     MProgress.prototype.hide = function () {
         this.set(100);
-        setTimeout(this.remove.bind(this), 500);
+        setTimeout(this.remove.bind(this), 200);
         return this;
     };
     MProgress.prototype.remove = function () {

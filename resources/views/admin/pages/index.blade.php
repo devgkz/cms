@@ -23,10 +23,10 @@
 
 <ul class="tabs classic topline">
     @if($id)        
-        <li class="tabs__item"><a class="tabs__link active" href="{{ config('cms.admin_uri') }}/pages/index/{{$id}}">Список страниц</a></li>
+        <li class="tabs__item"><a class="tabs__link active" href="{{ config('cms.admin_uri') }}/pages/index/{{$id}}">Страницы</a></li>
         <li class="tabs__item"><a class="tabs__link" href="{{ config('cms.admin_uri') }}/pages/edit/{{$id}}">Содержимое</a></li>
     @else 
-        <li class="tabs__item"><a class="tabs__link active" href="{{ config('cms.admin_uri') }}/pages">Список страниц</a></li>
+        <li class="tabs__item"><a class="tabs__link active" href="{{ config('cms.admin_uri') }}/pages">Страницы</a></li>
     @endif
 </ul>
 
@@ -38,8 +38,9 @@
           <th style="min-width:270px">Title</th>          
           <th>URI</th>          
           <th>Шаблон</th>          
+          <th>Статус</th>
           <th>Created</th>
-          <th class="text-muted">**</th>
+          <th class="text-right text-muted">**</th>
       </tr>
   </thead>
   <tbody>
@@ -48,20 +49,26 @@
           <td><small>{{ $item->id }}</small></td>
           <td>
               <a href="{{ config('cms.admin_uri') }}/pages/index/{{$item->id}}">{{ $item->title }}</a>
+              <sup class="text-muted" title="Число подстраниц">{{ $item->childs->count()?:'' }}</sup>
           </td>
           <td><small>{{ $item->slug }}</small></td>
           <td>{{ App\Models\Page::getTemplates()[$item->template] }}</td>
+          <td><span class="badge {{ App\Models\PageStatusList::getCss($item->status) }}">
+                {{ App\Models\PageStatusList::get($item->status) }}</span></td>
           <td style="white-space:nowrap">
-            <small>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $item->created_at)->format('d.m.Y H:i') }}</small>
+            <small>{{ $item->created_at->format('d.m.Y H:i') }}</small>
           </td>          
           <td class="text-right" style="white-space:nowrap">
-              <a class="text-info p-1" href="{{ config('cms.admin_uri') }}/pages/edit/{{ $item->id }}" title="Редактировать"><i class="fa fa-pen"></i></a>
-              <a class="text-danger p-1" onclick="cms.modal.confirm('Удалить страницу?', function(){document.getElementById('remove-form-{{ $item->id }}').submit();}); return false;" href="#" title="Удалить"><i class="fa fa-trash"></i></a>
+              <a class="text-info" href="{{ config('cms.admin_uri') }}/pages/edit/{{ $item->id }}" title="Редактировать"><i class="fa fa-pen"></i></a>
+              <span class="p-1"></span>
+              <a class="text-muted" href="{{ $item->slug }}" target="_blank" title="Просмотр (в новом окне)"><i class="fa fa-external-link-alt"></i></a>
+              <span class="p-1"></span>
+              <a class="text-danger" onclick="cms.modal.confirm('Удалить страницу?', function(){document.getElementById('remove-form-{{ $item->id }}').submit();}); return false;" href="#" title="Удалить"><i class="fa fa-trash"></i></a>
               <form id="remove-form-{{ $item->id }}" action="{{ config('cms.admin_uri') }}/pages/remove/{{ $item->id }}" method="POST" style="display: none;" onsubmit="">{{ csrf_field() }}</form>
           </td>
       </tr>
       @empty
-        <tr><td colspan="5" class="text-xs-center">Нет страниц.</td></tr>
+        <tr><td colspan="7" class="text-xs-center">Нет страниц.</td></tr>
       @endforelse
   </tbody>
 </table>
