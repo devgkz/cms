@@ -5,6 +5,10 @@ html {
     overflow-y:scroll;
 }
 
+.app-content {
+    background: $gray-lightest;
+}
+
 .table {
     width: 100%;
     max-width: 100%;
@@ -50,18 +54,18 @@ html {
 .grid.full td { //@todo improve naming
     border:1px solid #CFD6D6;
 }
-.grid.striped tr:nth-child(even) td, 
-.grid.striped tr.even td  { 
-	background-color: #FAFAE7; 
+.grid.striped tr:nth-child(even) td,
+.grid.striped tr.even td  {
+	background-color: #FAFAE7;
 }
 
 .grid tr:hover  td,
 .grid .hovered {
-    background-color:#EEF2F2; 
+    background-color:#EEF2F2;
 }
-tr.selected td {	
+tr.selected td {
   background-color: #cff !important;
-  color: #000 !important;  
+  color: #000 !important;
 }
 
 .table-responsive {
@@ -160,7 +164,7 @@ input[type="checkbox"] {
 @media (min-width: $size-md) {
   .right-md {
     float: right;
-  }  
+  }
 }
 
 .pagination {

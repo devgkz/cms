@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Page;
 
 use Validator;
-use Session;
 
 
 class PagesController extends Controller
@@ -21,19 +20,19 @@ class PagesController extends Controller
     {
         $parents = [];
         $page = null;
-        
+
         $cond = Page::where('parent_id', $id);
-        
+
         if ($id != 0) {
             $parent = $page = Page::findOrFail($id);
             while ($parent->parent_id != 0) {
                 $parent = $parent->parent;
                 $parents[] = $parent;
-            }            
+            }
         }
-        
+
         $cond->orderBy($page && $page->order_childs_by ?: 'sort_order');
-        
+
         $items = $cond->get();
 
         return view('admin/pages/index', [
@@ -51,7 +50,7 @@ class PagesController extends Controller
      */
     public function add($parentId = 0)
     {
-   
+
         return view('admin/pages/add', [
             'parentId' => $parentId,
         ]);
@@ -60,6 +59,7 @@ class PagesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param  int  $parentId
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -67,9 +67,9 @@ class PagesController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'slug' => 'required',
-            'title' => 'required',            
+            'title' => 'required',
         ]);
-        
+
         if ($validator->fails()) {
             /* $request->flash();
             return view('admin/pages/add', [
@@ -77,11 +77,11 @@ class PagesController extends Controller
             ]) ;*/
             return redirect()->to(config('cms.admin_uri').'/pages/add'.$parentId)->withInput()->withErrors($validator->errors());
         }
-        
+
         $item = Page::create($request->all());
         $item->parent_id = $parentId;
         $item->save();
-        
+
         return response('<div class="alert success">Страница добавлена</div><script>window.location.reload()</script>');
     }
 
@@ -94,7 +94,7 @@ class PagesController extends Controller
     public function view($id)
     {
         $item = Page::findOrFail($id);
-        
+
         return view('admin/pages/view', [
             'item' => $item,
         ]);
@@ -110,20 +110,21 @@ class PagesController extends Controller
     {
         $parents = [];
         $page = null;
-        
+
         $cond = Page::where('parent_id', $id);
 
         $parent = $page = Page::findOrFail($id);
-        
+
         while ($parent->parent_id != 0) {
             $parent = $parent->parent;
             $parents[] = $parent;
-        }            
+        }
 
         return view('admin/pages/edit', [
             'parents'=>array_reverse($parents),
             'page'=>$page,
-            'id'=>$id
+            'id'=>$id,
+            'media'=>$page->media,
         ]);
     }
 
@@ -138,15 +139,15 @@ class PagesController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'slug' => 'required',
-            'title' => 'required',            
+            'title' => 'required',
         ]);
-        
+
         if ($validator->fails()) {
             return redirect()->to(config('cms.admin_uri').'/pages/edit/'.$id)->withInput()->withErrors($validator->errors());
-        } 
-        
+        }
+
         $item = Page::find($id)->update($request->all());
-        
+
         return response('<div class="alert success">Изменения сохранены</div><script>setTimeout(function() {cms.modal.closeAll();}, 500);</script>');
     }
 
@@ -162,5 +163,19 @@ class PagesController extends Controller
         $item->delete();
 
         return redirect()->to(config('cms.admin_uri').'/pages/index/'.$item->parent_id);
+    }
+
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function mediaAdd($pageId = 0)
+    {
+
+        return view('admin/pages/media_add', [
+            'pageId' => $pageId,
+        ]);
     }
 }

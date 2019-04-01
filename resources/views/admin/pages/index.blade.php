@@ -7,12 +7,12 @@
     <div class="page-header-right">
         <a class="btn" href="{{ config('cms.admin_uri') }}/pages/add/{{ $id ?: 0 }}" onclick="return cms.ajaction(this);"><i class="ico left fa-plus"></i>Добавить</a>
     </div>
-    
+
     <a class="btn" href="{{ config('cms.admin_uri') }}/pages"><i class="ico left fa-sitemap text-info"></i>Начало</a>
     @foreach($parents as $parent)
         <a class="btn" href="{{ config('cms.admin_uri') }}/pages/index/{{$parent->id}}">{{ $parent->title }}</a>
-    @endforeach 
-    
+    @endforeach
+
     @if($page && $page->title)
         <span class="btn"><b>{{ $page->title }}</b></span>
     @endif
@@ -21,11 +21,11 @@
 
 @section('content')
 
-<ul class="tabs classic topline">
-    @if($id)        
+<ul class="tabs classic gray topline">
+    @if($id)
         <li class="tabs__item"><a class="tabs__link active" href="{{ config('cms.admin_uri') }}/pages/index/{{$id}}">Страницы</a></li>
         <li class="tabs__item"><a class="tabs__link" href="{{ config('cms.admin_uri') }}/pages/edit/{{$id}}">Содержимое</a></li>
-    @else 
+    @else
         <li class="tabs__item"><a class="tabs__link active" href="{{ config('cms.admin_uri') }}/pages">Страницы</a></li>
     @endif
 </ul>
@@ -35,9 +35,9 @@
   <thead>
       <tr>
           <th>ID</th>
-          <th style="min-width:270px">Title</th>          
-          <th>URI</th>          
-          <th>Шаблон</th>          
+          <th style="min-width:270px">Title</th>
+          <th>URI</th>
+          <th>Шаблон</th>
           <th>Статус</th>
           <th>Created</th>
           <th class="text-right text-muted">**</th>
@@ -57,7 +57,7 @@
                 {{ App\Models\PageStatusList::get($item->status) }}</span></td>
           <td style="white-space:nowrap">
             <small>{{ $item->created_at->format('d.m.Y H:i') }}</small>
-          </td>          
+          </td>
           <td class="text-right" style="white-space:nowrap">
               <a class="text-info" href="{{ config('cms.admin_uri') }}/pages/edit/{{ $item->id }}" title="Редактировать"><i class="fa fa-pen"></i></a>
               <span class="p-1"></span>
@@ -68,11 +68,11 @@
           </td>
       </tr>
       @empty
-        <tr><td colspan="7" class="text-xs-center">Нет страниц.</td></tr>
+        <tr><td colspan="7" class="text-xs-center">Нет страниц</td></tr>
       @endforelse
   </tbody>
 </table>
 
 </div>
-  
+
 @endsection

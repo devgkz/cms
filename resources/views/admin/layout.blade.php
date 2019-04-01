@@ -10,10 +10,10 @@
         {{ config('app.name') }}
     @endif
   </title>
-  
+
   <link rel="icon" type="image/png" href="/admin/images/favicon.png" sizes="16x16">
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i&amp;subset=cyrillic" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i&subset=cyrillic" rel="stylesheet">
   <link rel="stylesheet" href="/admin/css/main.css?b{{config('app.build')}}" />
 </head>
 
@@ -27,7 +27,6 @@
           <a class="logo__link text-danger" href="{{ config('cms.admin_uri') }}">{{ config('app.name') }}</a>
           <div class="nav-trigger">Меню<span></span></div>
         </div>
-        
     </div>
 
     <ul id="responsive-nav" class="nav col-md-10 show-md">
@@ -44,13 +43,13 @@
                 <a class="nav__link<?=(Request::is(config('cms.admin_uri').'/'.$uri.'*')?' active':'')?>" href="{{ config('cms.admin_uri') }}/<?=$uri?>"><?=$title?></a>
               </li>
             <?php endforeach;?>
-        
-        
+
+
         <li class="nav__item dropdown">
               <a class="nav__link dropdown-toggle" data-toggle="dropdown" href="#" id="download" aria-expanded="false">
                 <i class="ico left fa-tools"></i>Опции <span class="caret"></span>
               </a>
-              
+
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="{{ config('cms.admin_uri') }}/settings">
                   <i class="ico left fa-cog"></i>Настройки</a>
@@ -68,7 +67,7 @@
           <a class="nav__link dropdown-toggle" data-toggle="dropdown" href="#" id="download" aria-expanded="false">
             <i class="ico left far fa-user-circle"></i>{{ Auth::user()->name }} <span class="caret"></span>
           </a>
-          
+
           <div class="dropdown-menu dropdown-menu-right"><!-- -->
             <a class="dropdown-item" href="{{ config('cms.admin_uri') }}/profile">
                   <i class="ico left fa-id-card"></i>Профиль</a>
@@ -85,11 +84,11 @@
   </div>
 </div>
 
-  
+
 @hasSection ('header')
 <header class="page-header">
 <div class="page-header-inner">
-    @yield('header') 
+    @yield('header')
 </div>
 </header>
 @endif

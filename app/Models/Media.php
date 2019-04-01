@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Page extends Model
+class Media extends Model
 {
     use SoftDeletes;
-    
+
     protected $fillable = [
         'page_id',
         'type_id',
@@ -18,7 +18,7 @@ class Page extends Model
         'content',
         'sort_order',
     ];
-    
+
     protected static $types = [
         '0'=>'Фото',
         '1'=>'Код видео',
@@ -29,7 +29,7 @@ class Page extends Model
     {
         return static::$types;
     }
-    
+
     /**
      * Get the page for the media.
      */
@@ -37,5 +37,5 @@ class Page extends Model
     {
         return $this->belongsTo('App\Models\Page', 'page_id');
     }
-    
+
 }
