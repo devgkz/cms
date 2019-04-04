@@ -17,9 +17,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 
-        'email', 
-        'password', 
+        'name',
+        'email',
+        'password',
         'role',
         'phone',
         'comment',
@@ -58,5 +58,4 @@ class User extends Authenticatable
         $userRole = $this->getAttribute('role');
         return $userRole == $role;
     }
-  
 }

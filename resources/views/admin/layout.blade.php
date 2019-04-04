@@ -15,6 +15,9 @@
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i&subset=cyrillic" rel="stylesheet">
   <link rel="stylesheet" href="/admin/css/main.css?b{{config('app.build')}}" />
+  
+  <script src="/admin/js/jquery.min.js"></script>
+  <script src="/admin/js/common.js"></script>
 </head>
 
 <body class="app-body" style="">
@@ -104,9 +107,10 @@
 
 
 <link rel="stylesheet" href="/admin/css/fontawesome.min.css" />
-<script src="https://yastatic.net/jquery/3.3.1/jquery.min.js"></script>
+<!--script src="https://yastatic.net/jquery/3.3.1/jquery.min.js"></script-->
+
 <script src="/admin/js/bundle.js"></script>
-<script src="/admin/js/common.js"></script>
+
 
 </body>
 </html>

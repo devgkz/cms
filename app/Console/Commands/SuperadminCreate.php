@@ -46,7 +46,7 @@ class SuperadminCreate extends Command
         $this->display($admin);
     }
     
-        /**
+    /**
      * Ask for admin details.
      *
      * @return array

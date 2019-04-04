@@ -27,6 +27,10 @@ composer require kyslik/column-sortable laravelcollective/html arrilot/laravel-w
 
 php artisan vendor:publish (Kyslik\ColumnSortable\ColumnSortableServiceProvider)
 
-@todo custom radio and checkbox css
+# custom checkbox css (swithbox)
+
+# configure upload drivers in config/filesystems
+
+php composer require intervention/image
 
 ```

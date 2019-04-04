@@ -29,17 +29,9 @@
 
 <script type="text/javascript">
 formOptions = {
-    before:  function () {
-        cms.modal.wait(0);
-    },
     success: function (data) {
-        cms.modal.waitClose();
         cms.notice.show("Настройки сохранены", "success", 1000);
-    },
-    error: function (data) {
-        cms.modal.waitClose();
-        cms.modal.alert('Ошибка связи. Проверьте интернет<br> и попробуйте еще раз', cms.modal.closeAll);
-    },
-}
+    }
+};
 </script>
 @endsection

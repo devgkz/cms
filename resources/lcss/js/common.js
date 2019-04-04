@@ -39,38 +39,6 @@ $(document).ready(function(){
 });
 
 
-// btn-upload
-$(function() {
-  var fileInput = document.getElementById('file');
-  defaultLabel = $(fileInput).parent('.btn-upload').find('span').text();
-
-  fileInput.addEventListener('change', function(e) {
-
-    if (fileInput.value.substring(fileInput.value.lastIndexOf('.') + 1, fileInput.value.length).toLowerCase() != 'png') {
-      alert('Only png files are accepted!');
-      fileInput.value = null;
-      $(fileInput).parent('.btn-upload').find('span').html(defaultLabel);
-    }
-
-    fileNames = [];
-
-    if (e.target.files.length) {
-      for (i=0; i < e.target.files.length; i++) {
-        fileNames.push(e.target.files[i].name);
-      };
-    }
-
-    if (fileInput.files.length) {
-      $(fileInput).parent('.btn-upload').addClass('selected');
-      $(fileInput).parent('.btn-upload').find('span').html('(' + fileNames.length + ' шт.) ' + fileNames.join("; ").trim());
-    } else {
-      $(fileInput).parent('.btn-upload').removeClass('selected');
-      $(fileInput).parent('.btn-upload').find('span').html(defaultLabel);
-    }
-  }, false);
-
-});
-
 // navs & tabs
 $(function() {
   // $('.tabs__link').click(function(e) {
@@ -285,9 +253,14 @@ var cms = {};
       cms.modal.waitClose(); // скрытие mprogress
       cms.modal.open(data);
     })
-    .fail(function() {
+    .fail(function(error) {
+      console.log(error);
       cms.modal.waitClose(); // скрытие mprogress
-      cms.modal.alert('Ошибка связи. Проверьте интернет<br> и попробуйте еще раз', cms.modal.closeAll);
+      if (error.status != 0) {
+        cms.modal.alert(error.status+' '+error.statusText, cms.modal.close);
+      } else {
+        cms.modal.alert('Internet connection error', cms.modal.closeAll);
+      }      
     });
   };
 
@@ -305,6 +278,16 @@ var cms = {};
         if(elem) elem.close();
       }
     }
+  };
+  
+  cms.modal.responseErrorMsg = function(xhr) {
+    console.log(xhr);
+    cms.modal.waitClose(); // скрытие mprogress
+    if (xhr.status != 0) {
+        cms.modal.alert(xhr.status+' '+xhr.statusText, cms.modal.close);
+    } else {
+        cms.modal.alert('Internet connection error', cms.modal.close);
+    }   
   };
 
   /**
@@ -337,6 +320,7 @@ var cms = {};
    */
   cms.ajaxSubmit =  function (form, opts) {
     if(typeof opts.before === 'function') opts.before();
+    else cms.modal.wait(0);
 
     var url = opts.url || form.action;
 
@@ -350,13 +334,23 @@ var cms = {};
     xhr.onload = function(e) {
       if (xhr.readyState != 4) return;
       if (this.status == 200) {
-        if(typeof opts.success === 'function') opts.success(xhr.responseText);
+        cms.modal.waitClose();
+        // @todo responseJSON
+        if(typeof opts.success === 'function') opts.success(xhr);
       } else {
-        if(typeof opts.error === 'function') opts.error(this.status);
+        if(typeof opts.error === 'function') {
+            opts.error(xhr);
+        } else {
+            cms.modal.responseErrorMsg(xhr);
+        }
       }
     };
     xhr.onerror = function(e) {
-      if(typeof opts.error === 'function') opts.error();
+      if(typeof opts.error === 'function') {
+          opts.error(xhr);
+      } else {
+          cms.modal.responseErrorMsg(xhr);
+      }
     };
     return false;
   };
@@ -369,11 +363,16 @@ var cms = {};
       },
       success: function (data) {
         cms.modal.waitClose(); // скрытие mprogress
-        cms.modal.open(data);
+        cms.modal.open(data.responseText);
       },
-      error:   function (data) {
+      error:   function (error) {
+        console.log(error);
         cms.modal.waitClose(); // скрытие mprogress
-        cms.modal.alert('Ошибка связи. Проверьте интернет<br> и попробуйте еще раз', cms.modal.closeAll);
+        if (error.status != 0) {
+          cms.modal.alert(error.status+' '+error.statusText, cms.modal.close);
+        } else {
+          cms.modal.alert('Internet connection error', cms.modal.close);
+        }   
       }
     });
     return false;

@@ -26,6 +26,7 @@ Route::group(['prefix' => 'dp', 'middleware'=> 'auth'], function () {
 
     Route::get('', 'Admin\\MainController@index')->name('admin.index');
     Route::get('/about', 'Admin\\MainController@about')->name('admin.about');
+    Route::post('/main/save_order', 'Admin\\MainController@saveOrder')->name('admin.save_order');
 
     // Users
     Route::group(['prefix' => 'users'], function () {
@@ -47,7 +48,12 @@ Route::group(['prefix' => 'dp', 'middleware'=> 'auth'], function () {
         Route::get('/edit/{id}', 'Admin\\PagesController@edit')->name('admin.pages.edit');
         Route::post('/update/{id}', 'Admin\\PagesController@update')->name('admin.pages.update');
         Route::post('/remove/{id}', 'Admin\\PagesController@remove')->name('admin.pages.remove');
+        // Media
         Route::get('/media/add/{pageId}', 'Admin\\PagesController@mediaAdd')->name('admin.pages.media.add');
+        Route::post('/media/store/{pageId}', 'Admin\\PagesController@mediaStore')->name('admin.pages.media.store');
+        Route::get('/media/edit/{id}', 'Admin\\PagesController@mediaEdit')->name('admin.pages.media.edit');
+        Route::post('/media/update/{id}', 'Admin\\PagesController@mediaUpdate')->name('admin.pages.media.update');
+        Route::post('/media/remove/{id}', 'Admin\\PagesController@mediaRemove')->name('admin.pages.media.remove');
     });
 
     // Settings
@@ -60,4 +66,6 @@ Route::group(['prefix' => 'dp', 'middleware'=> 'auth'], function () {
 /*
  * CMS page routes
  */
+Route::get('files/resized/{profile}/{dir}/{filename}', 'MainController@resized');
 Route::get('{slug}', 'PagesController@view')->where('search', '.*');
+

@@ -25,6 +25,4 @@ class Setting extends Model
         'visible',
         'sort_order',
     ];
-    
-    
 }

@@ -23,7 +23,7 @@
 
 @section('content')
 
-<ul class="tabs classic gray topline">
+<ul class="tabs classic topline">
     <li class="tabs__item">
         <a class="tabs__link" href="{{ config('cms.admin_uri') }}/pages/index/{{$id}}">Страницы</a></li>
     <li class="tabs__item">
@@ -133,7 +133,7 @@
         <div class="row">
             <div class="col-md-8">
                 <h4 class="text-bold">Прикрепленное медиа-содержимое</h4>
-            </div>
+            </div>             
             <div class="col text-right">
                 <a class="btn" href="{{ config('cms.admin_uri') }}/pages/media/add/{{ $page->id }}" onclick="return cms.ajaction(this);"><i class="ico left fa-plus"></i>Добавить</a>
             </div>
@@ -142,7 +142,7 @@
        <table class="table bordered grid full" style="width:100%">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>ID<i class="ico right fa-arrows-alt-v"></i></th>
                     <th style="width:100px" class="text-muted">*</th>
                     <th>Тип</th>
                     <th class="text-right text-muted">**</th>
@@ -150,8 +150,21 @@
             </thead>
             <tbody>
                 @forelse($media as $m)
-                <tr>
-                    <td><small>{{ $m->id }}</small></td>
+                <tr id="{{ $m->id }}">
+                    <td class="dragHandle"><small>{{ $m->id }}</small></td>
+                    <td>
+                        <small>{{ $m->title }}</small>
+                        @if($m->type_id == 0)
+                            <br><a href="/files/{{ $m->filename }}" target="_blank"><image src="/files/resized/40x40/{{ $m->filename }}" /></a>
+                        @endif
+                    </td>
+                    <td><small>{{ App\Models\Media::getTypes()[$m->type_id] }}</small></td>
+                    <td class="text-right" style="white-space:nowrap">
+                          <a class="text-info" href="{{ config('cms.admin_uri') }}/pages/media/edit/{{ $m->id }}" title="Редактировать" onclick="return cms.ajaction(this);"> <i class="fa fa-pen"></i></a>
+                          <span class="p-1"></span>
+                          <a class="text-danger" onclick="cms.modal.confirm('Удалить медиа?', function(){document.getElementById('remove-form-{{ $m->id }}').submit();}); return false;" href="#" title="Удалить"><i class="fa fa-trash"></i></a></div>
+                          <form id="remove-form-{{ $m->id }}" action="{{ config('cms.admin_uri') }}/pages/media/remove/{{ $m->id }}" method="POST" style="display: none;" onsubmit="">{{ csrf_field() }}</form>
+                    </td>
                 </tr>
                 @empty
                 <tr><td colspan="4" class="text-xs-center">Нет медиа</td></tr>
@@ -163,7 +176,37 @@
 </div>
 </div>
 
-<!-- TinyMCE -->
+<script type="text/javascript">
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    }
+});
+$(".grid").tableDnD({
+    onDragClass: "myDragClass",
+    dragHandle: "dragHandle",
+    onDrop: function(table, row) {
+        var rows = table.tBodies[0].rows;
+        var str = "";
+        for (var i = 0; i < rows.length; i++) {
+          str += rows[i].id + ";";
+        }
+        $.post("{{ config('cms.admin_uri') }}/main/save_order", {data: str, table: "media"})
+        .done(function(data) {
+          cms.notice.show("Сортировка сохранена", "success", 1000);
+        })
+        .fail(function(error) {
+          console.log(error);
+          if (error.status != 0) {
+            cms.modal.alert(error.status+' '+error.statusText, cms.modal.close);
+          } else {
+            cms.modal.alert('Internet connection error', cms.modal.closeAll);
+          }      
+        });
+    }
+});
+</script>
+
 <script type="text/javascript" src="/admin/tinymce/tinymce.min.js"></script>
 <script type="text/javascript">
 tinymce.init({
@@ -174,7 +217,7 @@ tinymce.init({
          //"autoresize pagebreak searchreplace template anchor wordcount",
          "anchor link image lists charmap hr",
          "visualblocks code fullscreen media nonbreaking", //
-         "table contextmenu"
+         "table"
    ],
    // formatselect
   toolbar: "styleselect | bold italic strikethrough| subscript superscript | forecolor backcolor | removeformat | alignleft aligncenter alignright alignjustify | outdent indent | bullist numlist blockquote | link image media charmap nonbreaking hr table | visualblocks code fullscreen",

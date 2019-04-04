@@ -21,7 +21,7 @@
 
 @section('content')
 
-<ul class="tabs classic gray topline">
+<ul class="tabs classic topline">
     @if($id)
         <li class="tabs__item"><a class="tabs__link active" href="{{ config('cms.admin_uri') }}/pages/index/{{$id}}">Страницы</a></li>
         <li class="tabs__item"><a class="tabs__link" href="{{ config('cms.admin_uri') }}/pages/edit/{{$id}}">Содержимое</a></li>
@@ -36,7 +36,7 @@
       <tr>
           <th>ID</th>
           <th style="min-width:270px">Title</th>
-          <th>URI</th>
+          <th>URL</th>
           <th>Шаблон</th>
           <th>Статус</th>
           <th>Created</th>

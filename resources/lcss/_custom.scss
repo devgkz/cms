@@ -5,9 +5,9 @@ html {
     overflow-y:scroll;
 }
 
-.app-content {
-    background: $gray-lightest;
-}
+// .app-content {
+    // background: $gray-lightest;
+// }
 
 .table {
     width: 100%;
@@ -63,6 +63,20 @@ html {
 .grid .hovered {
     background-color:#EEF2F2;
 }
+
+.grid .dragHandle {
+  cursor: n-resize;
+  //background: $brand-warning;
+}
+
+/* .grid .dragHandle:hover {
+  background: url(/assets/updown.gif) no-repeat center;
+} */
+.grid .myDragClass td {
+  /* background-color: #F5F0BB !important; */
+  background-color: $brand-warning !important;
+}
+
 tr.selected td {
   background-color: #cff !important;
   color: #000 !important;
@@ -139,6 +153,11 @@ input[type="checkbox"] {
   //box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(0, 0, 0, 0.05);
   padding: 1rem;
+}
+
+.btn-upload {
+    overflow:hidden;
+    text-overflow: ellipsis;
 }
 
 /*.tabs.classic .tabs__link {

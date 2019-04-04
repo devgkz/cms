@@ -37,5 +37,4 @@ class Media extends Model
     {
         return $this->belongsTo('App\Models\Page', 'page_id');
     }
-
 }
