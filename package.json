@@ -11,7 +11,7 @@
     "gulp-sass": "^4.0.1",
     "gulp-uglify": "^3.0.1",
     "jquery": "^3.5.0",
-    "npm": "^6.13.4",
+    "npm": "^6.14.6",
     "popper.js": "^1.14.4",
     "webpack-stream": "^5.1.1"
   },
